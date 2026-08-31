@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60">
+  <rect width="240" height="60" rx="8" fill="none"/>
+  <!-- Icon Emblem -->
+  <g transform="translate(10, 10)">
+    <path d="M5 32 L35 32 C38 32 40 30 40 27 L40 22 C40 18 36 15 32 15 L8 15 C4 15 0 18 0 22 L0 27 C0 30 2 32 5 32 Z" fill="#6D6559"/>
+    <path d="M4 15 L36 15 C38 15 40 13 40 11 C40 8 37 6 34 6 L6 6 C3 6 0 8 0 11 C0 13 2 15 4 15 Z" fill="#C5A059"/>
+    <circle cx="8" cy="36" r="3" fill="#1D1D1B"/>
+    <circle cx="32" cy="36" r="3" fill="#1D1D1B"/>
+  </g>
+  <!-- Text Brandmark -->
+  <text x="60" y="28" font-family="'Plus Jakarta Sans', 'Inter', sans-serif" font-weight="900" font-size="20" letter-spacing="3" fill="#1D1D1B">DIVAN BULA</text>
+  <text x="60" y="44" font-family="'Inter', sans-serif" font-weight="700" font-size="9" letter-spacing="2.5" fill="#6D6559">FURNITURE MANUFACTURER</text>
+</svg>
