@@ -14,12 +14,21 @@ function readLocalCatalog() {
 }
 
 async function uploadCloudImage(dataUrl, productId) {
-  const response = await fetch('/api/catalog-images', {
-    method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ dataUrl, productId })
-  });
-  if (!response.ok) throw new Error(response.status === 401 ? 'Сессия завершена. Войдите снова.' : 'Не удалось загрузить фотографию.');
-  const data = await response.json();
-  return data.url;
+  try {
+    const { upload } = await import('@vercel/blob/client');
+    const image = await fetch(dataUrl).then((response) => response.blob());
+    const safeProductId = String(productId || 'new-product').toLowerCase().replace(/[^a-z0-9-]+/g, '-').slice(0, 80) || 'new-product';
+    const pathname = `products/${safeProductId}/${Date.now()}-${Math.random().toString(36).slice(2, 9)}.webp`;
+    const blob = await upload(pathname, image, {
+      access: 'public', handleUploadUrl: '/api/catalog-images', contentType: 'image/webp'
+    });
+    return blob.url;
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : '';
+    if (/401|unauthorized/i.test(detail)) throw new Error('Сессия завершена. Выйдите и войдите в админ-панель снова.');
+    if (/size|large|413/i.test(detail)) throw new Error('Фотография слишком большая. Выберите другое изображение.');
+    throw new Error('Не удалось загрузить фотографию в Blob. Проверьте подключение хранилища и повторите.');
+  }
 }
 
 export function CatalogProvider({ children }) {
