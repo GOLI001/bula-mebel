@@ -28,7 +28,7 @@ export default async function handler(request, response) {
   try {
     if (request.method === 'GET') {
       const catalog = await readCloudCatalog();
-      return json(response, 200, { products: catalog.products, source: catalog.source });
+      return json(response, 200, { products: catalog.products, source: catalog.source, storageConfigured: catalog.storageConfigured });
     }
 
     if (request.method === 'PUT') {

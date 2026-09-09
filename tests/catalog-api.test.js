@@ -20,6 +20,7 @@ test('public catalog falls back to the bundled products before Blob is initializ
   const body = JSON.parse(result.value);
   assert.equal(result.statusCode, 200);
   assert.equal(body.source, 'default');
+  assert.equal(body.storageConfigured, false);
   assert.equal(body.products.length, 24);
 });
 

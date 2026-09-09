@@ -9,15 +9,15 @@ function latestBlob(blobs) {
 }
 
 export async function readCloudCatalog() {
-  if (!TOKEN()) return { products: PRODUCTS_DATA, source: 'default', blobs: [] };
+  if (!TOKEN()) return { products: PRODUCTS_DATA, source: 'default', blobs: [], storageConfigured: false };
   const result = await list({ prefix: CATALOG_PREFIX, limit: 100, token: TOKEN() });
   const current = latestBlob(result.blobs);
-  if (!current) return { products: PRODUCTS_DATA, source: 'default', blobs: [] };
+  if (!current) return { products: PRODUCTS_DATA, source: 'default', blobs: [], storageConfigured: true };
   const response = await fetch(`${current.url}?v=${encodeURIComponent(current.uploadedAt)}`, { cache: 'no-store' });
   if (!response.ok) throw new Error('Cloud catalog could not be loaded');
   const products = await response.json();
   if (!Array.isArray(products)) throw new Error('Cloud catalog has an invalid format');
-  return { products, source: 'cloud', blobs: result.blobs };
+  return { products, source: 'cloud', blobs: result.blobs, storageConfigured: true };
 }
 
 export async function writeCloudCatalog(products) {
