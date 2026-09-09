@@ -8,7 +8,7 @@ textile
 variant-7-b-line
 css
 js
-images
+/images/
 *.pdf
 catalog_page-1.png
 concept_page-*.png

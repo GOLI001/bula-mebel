@@ -29,7 +29,7 @@ function optimizeImage(file) {
     const image = new Image();
     const url = URL.createObjectURL(file);
     image.onload = () => {
-      const scale = Math.min(1, 1400 / Math.max(image.width, image.height));
+      const scale = Math.min(1, 1200 / Math.max(image.width, image.height));
       const canvas = document.createElement('canvas');
       canvas.width = Math.round(image.width * scale); canvas.height = Math.round(image.height * scale);
       canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
@@ -37,7 +37,7 @@ function optimizeImage(file) {
         URL.revokeObjectURL(url);
         if (!blob) return reject(new Error('Не удалось обработать изображение'));
         const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.onerror = reject; reader.readAsDataURL(blob);
-      }, 'image/webp', .78);
+      }, 'image/webp', .74);
     };
     image.onerror = () => { URL.revokeObjectURL(url); reject(new Error(`Не удалось открыть ${file.name}`)); };
     image.src = url;
