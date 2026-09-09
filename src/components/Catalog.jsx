@@ -7,7 +7,7 @@ import ProductModal from './ProductModal';
 export default function Catalog() {
   const [category, setCategory] = useState('all');
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const { products: catalogProducts } = useCatalog();
+  const { products: catalogProducts, catalogError } = useCatalog();
   const products = catalogProducts.filter((product) => category === 'all' || product.category === category);
 
   return (
@@ -22,6 +22,7 @@ export default function Catalog() {
             <button key={item.id} type="button" className={category === item.id ? 'active' : ''} aria-pressed={category === item.id} onClick={() => setCategory(item.id)}>{item.label}</button>
           ))}
         </div>
+        {catalogError && <p className="catalog-sync-error" role="status">Показываем сохранённую версию каталога. Обновление данных временно недоступно.</p>}
         <div className="product-grid">
           {products.map((product) => <ProductCard key={product.id} product={product} onOpen={() => setSelectedProduct(product)} />)}
         </div>

@@ -112,6 +112,7 @@ button, summary { cursor: pointer; }
 .add-button { min-height: 43px; padding: 0 16px; display: inline-flex; align-items: center; gap: 7px; border: 0; border-radius: 999px; color: white; background: var(--ink); font-size: 11px; font-weight: 800; transition: background var(--ease); }
 .add-button:hover { background: var(--accent-dark); }
 .catalog-note { margin: 24px 0 0; color: #898a85; font-size: 11px; text-align: center; }
+.catalog-sync-error { margin: -12px 0 22px; padding: 10px 13px; border: 1px solid #e5cfac; border-radius: 9px; color: #79551f; background: #fff8ea; font-size: 10px; font-weight: 700; }
 
 .production-section { background: var(--paper); }
 .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
@@ -314,11 +315,14 @@ button, summary { cursor: pointer; }
 .admin-message { margin: 14px 0 0; padding: 10px 12px; border-radius: 8px; color: #4d4f49; background: #eae7df; font-size: 10px; font-weight: 700; }
 .admin-actions { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 9px; }
 .admin-actions .button { min-height: 43px; padding-inline: 18px; font-size: 11px; }
+.admin-actions .button:disabled, .admin-storage-note button:disabled, .import-button.disabled { opacity: .55; pointer-events: none; transform: none; }
 .import-button { position: relative; cursor: pointer; }
 .admin-storage-note { margin-top: 22px; padding-top: 17px; display: flex; align-items: start; justify-content: space-between; gap: 22px; border-top: 1px solid var(--line); }
 .admin-storage-note p { max-width: 590px; margin: 0; color: var(--muted); font-size: 9px; }
 .admin-storage-note button { flex: 0 0 auto; padding: 4px 0; display: inline-flex; align-items: center; gap: 6px; border: 0; color: var(--muted); background: transparent; font-size: 9px; font-weight: 800; }
 .admin-storage-note button:hover { color: var(--danger); }
+.admin-storage-note.migration { padding: 14px; border: 1px solid #d6bd8f; border-radius: 10px; background: #fff7e8; }
+.admin-storage-note.migration p { color: #6f5125; }
 .admin-login-panel { width: min(440px, 100%); height: auto; min-height: 450px; padding: 52px 48px 46px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: visible; text-align: center; }
 .admin-login-close { position: absolute; top: 18px; right: 18px; }
 .admin-lock-icon { width: 66px; height: 66px; margin-bottom: 22px; display: grid; place-items: center; border-radius: 20px; color: white; background: var(--ink); box-shadow: 0 12px 30px rgba(23, 24, 21, .18); }

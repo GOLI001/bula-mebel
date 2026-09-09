@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Download, ImagePlus, LoaderCircle, LockKeyhole, LogOut, Plus, RotateCcw, Save, ShieldCheck, Trash2, Upload, X } from 'lucide-react';
 import { useCatalog } from '../context/CatalogContext';
+import { PRODUCTS_DATA } from '../data/products';
 
 const CATEGORY_OPTIONS = [
   ['straight', 'Прямой диван'], ['corner', 'Угловой диван'],
@@ -44,7 +45,7 @@ function optimizeImage(file) {
 }
 
 export default function AdminPanel({ isOpen, onClose }) {
-  const { products, updateProduct, addProduct, removeProduct, resetCatalog } = useCatalog();
+  const { products, updateProduct, addProduct, removeProduct, replaceCatalog, resetCatalog, uploadImage, hasLocalDraft } = useCatalog();
   const [selectedId, setSelectedId] = useState(products[0]?.id || '');
   const [draft, setDraft] = useState(() => ({ ...products[0] }));
   const [isNew, setIsNew] = useState(false);
@@ -54,6 +55,7 @@ export default function AdminPanel({ isOpen, onClose }) {
   const [password, setPassword] = useState('');
   const [accessError, setAccessError] = useState('');
   const [isSigningIn, setIsSigningIn] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const closeRef = useRef(null);
 
   useEffect(() => {
@@ -85,6 +87,13 @@ export default function AdminPanel({ isOpen, onClose }) {
       .finally(() => { if (!cancelled) setIsCheckingAccess(false); });
     return () => { cancelled = true; };
   }, [isOpen]);
+
+  useEffect(() => {
+    if (isNew || !products.length) return;
+    const product = products.find((item) => item.id === selectedId) || products[0];
+    setSelectedId(product.id);
+    setDraft({ ...product, images: [...product.images] });
+  }, [products, selectedId, isNew]);
 
   const signIn = async (event) => {
     event.preventDefault();
@@ -137,26 +146,41 @@ export default function AdminPanel({ isOpen, onClose }) {
 
   const handleImages = async (event) => {
     const files = [...event.target.files].slice(0, Math.max(0, 6 - draft.images.length));
-    try { field('images', [...draft.images, ...await Promise.all(files.map(optimizeImage))]); setMessage('Фотографии добавлены и оптимизированы.'); }
+    if (!files.length) return;
+    setIsSaving(true); setMessage('Оптимизируем и загружаем фотографии…');
+    try {
+      const optimized = await Promise.all(files.map(optimizeImage));
+      const uploaded = await Promise.all(optimized.map((image) => uploadImage(image, draft.id || slugify(draft.name))));
+      field('images', [...draft.images, ...uploaded]);
+      setMessage(import.meta.env.DEV ? 'Фотографии добавлены локально.' : 'Фотографии загружены в облако.');
+    }
     catch (error) { setMessage(error.message); }
+    finally { setIsSaving(false); }
     event.target.value = '';
   };
 
-  const save = () => {
+  const save = async () => {
     if (!draft.name.trim()) return setMessage('Укажите название товара.');
     if (!draft.images.length) return setMessage('Добавьте хотя бы одну фотографию.');
     const categoryLabel = CATEGORY_OPTIONS.find(([id]) => id === draft.category)?.[1] || 'Диван';
     const product = { ...draft, id: draft.id || slugify(draft.name), name: draft.name.trim(), categoryLabel, price: draft.price ? Number(draft.price) : null, oldPrice: draft.oldPrice ? Number(draft.oldPrice) : null, seats: Number(draft.seats) || 1 };
+    setIsSaving(true); setMessage('Сохраняем каталог…');
     try {
-      if (isNew) { addProduct(product); setSelectedId(product.id); setIsNew(false); } else updateProduct(product);
-      setDraft(product); setMessage('Изменения сохранены в этом браузере.');
+      if (isNew) { await addProduct(product); setSelectedId(product.id); setIsNew(false); } else await updateProduct(product);
+      setDraft(product); setMessage(import.meta.env.DEV ? 'Изменения сохранены локально.' : 'Каталог обновлён для всех устройств.');
     } catch (error) { setMessage(error.message); }
+    finally { setIsSaving(false); }
   };
 
-  const remove = () => {
+  const remove = async () => {
     if (isNew || !confirm(`Удалить «${draft.name}» из каталога?`)) return;
-    removeProduct(draft.id); const next = products.find((item) => item.id !== draft.id);
-    if (next) chooseProduct(next.id); else startNew();
+    setIsSaving(true);
+    try {
+      await removeProduct(draft.id); const next = products.find((item) => item.id !== draft.id);
+      if (next) chooseProduct(next.id); else startNew();
+      setMessage('Товар удалён из общего каталога.');
+    } catch (error) { setMessage(error.message); }
+    finally { setIsSaving(false); }
   };
 
   const exportCatalog = () => {
@@ -170,8 +194,24 @@ export default function AdminPanel({ isOpen, onClose }) {
       if (!file) return;
       const data = JSON.parse(await file.text());
       if (!Array.isArray(data) || data.some((item) => !item.id || !item.name || !Array.isArray(item.images))) throw new Error('Неверный формат каталога.');
-      localStorage.setItem('divan_bula_catalog_v1', JSON.stringify(data)); window.location.reload();
+      setIsSaving(true);
+      await replaceCatalog(data);
+      setMessage(import.meta.env.DEV ? 'Каталог импортирован локально.' : 'Каталог импортирован и опубликован для всех устройств.');
+      setSelectedId(data[0].id); setDraft({ ...data[0], images: [...data[0].images] }); setIsNew(false);
     } catch (error) { setMessage(error.message); }
+    finally { setIsSaving(false); event.target.value = ''; }
+  };
+
+  const restoreDefaults = async () => {
+    if (!confirm('Вернуть исходный каталог для всех устройств?')) return;
+    setIsSaving(true);
+    try {
+      await resetCatalog();
+      const first = PRODUCTS_DATA[0];
+      setSelectedId(first.id); setDraft({ ...first, images: [...first.images] }); setIsNew(false);
+      setMessage('Исходный каталог опубликован для всех устройств.');
+    } catch (error) { setMessage(error.message); }
+    finally { setIsSaving(false); }
   };
 
   return (
@@ -197,8 +237,8 @@ export default function AdminPanel({ isOpen, onClose }) {
             <div className="admin-images"><div><strong>Фотографии</strong><span>До 6 изображений, они автоматически сжимаются</span></div><label className="upload-button"><ImagePlus size={18} /> Добавить фото<input type="file" accept="image/*" multiple onChange={handleImages} /></label></div>
             <div className="admin-image-grid">{draft.images.map((src, index) => <div key={`${src.slice(0, 40)}-${index}`}><img src={src} alt={`Фото ${index + 1}`} /><button type="button" onClick={() => field('images', draft.images.filter((_, itemIndex) => itemIndex !== index))} aria-label="Удалить фотографию"><X size={14} /></button>{index === 0 && <span>Обложка</span>}</div>)}</div>
             {message && <p className="admin-message" role="status">{message}</p>}
-            <div className="admin-actions"><button type="button" className="button button-primary" onClick={save}><Save size={17} /> Сохранить</button><button type="button" className="button button-secondary" onClick={exportCatalog}><Download size={17} /> Экспорт JSON</button><label className="button button-secondary import-button"><Upload size={17} /> Импорт<input type="file" accept="application/json" onChange={importCatalog} /></label></div>
-            <div className="admin-storage-note"><p><strong>Локальное хранение.</strong> Изменения видны в этом браузере. Экспортируйте JSON для резервной копии. Для общего управления каталогом после публикации потребуется подключить облачную базу.</p><button type="button" onClick={() => { if (confirm('Вернуть исходный каталог?')) { resetCatalog(); window.location.reload(); } }}><RotateCcw size={15} /> Вернуть исходный каталог</button></div>
+            <div className="admin-actions"><button type="button" className="button button-primary" onClick={save} disabled={isSaving}>{isSaving ? <LoaderCircle className="admin-spinner" size={17} /> : <Save size={17} />} {isSaving ? 'Сохраняем…' : hasLocalDraft ? 'Опубликовать каталог' : 'Сохранить'}</button><button type="button" className="button button-secondary" onClick={exportCatalog} disabled={isSaving}><Download size={17} /> Экспорт JSON</button><label className={`button button-secondary import-button${isSaving ? ' disabled' : ''}`}><Upload size={17} /> Импорт<input type="file" accept="application/json" onChange={importCatalog} disabled={isSaving} /></label></div>
+            <div className={`admin-storage-note${hasLocalDraft ? ' migration' : ''}`}><p>{hasLocalDraft ? <><strong>Найдены локальные изменения.</strong> Нажмите «Опубликовать каталог», чтобы перенести их в Blob и показать на всех устройствах.</> : <><strong>{import.meta.env.DEV ? 'Локальный режим.' : 'Облачный каталог.'}</strong> {import.meta.env.DEV ? 'Изменения сохраняются только для разработки.' : 'После сохранения товары и цены становятся доступны всем посетителям.'}</>}</p><button type="button" onClick={restoreDefaults} disabled={isSaving}><RotateCcw size={15} /> Вернуть исходный каталог</button></div>
           </div>
         </div>
       </section>
