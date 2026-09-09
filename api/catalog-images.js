@@ -1,5 +1,6 @@
 import { handleUpload } from '@vercel/blob/client';
 import { isAdminRequest } from '../server/adminSession.js';
+import { isBlobConfigured } from '../server/catalogStore.js';
 
 const MAX_IMAGE_BYTES = 4 * 1024 * 1024;
 
@@ -19,7 +20,7 @@ export default async function handler(request, response) {
     const body = typeof request.body === 'string' ? JSON.parse(request.body) : request.body;
     const isCompletionCallback = body?.type === 'blob.upload-completed';
     if (!isCompletionCallback && !isAdminRequest(request)) return json(response, 401, { error: 'Unauthorized' });
-    if (!process.env.BLOB_READ_WRITE_TOKEN) return json(response, 503, { error: 'Blob storage is not configured' });
+    if (!isBlobConfigured()) return json(response, 503, { error: 'Blob storage is not configured' });
 
     const result = await handleUpload({
       request,

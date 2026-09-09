@@ -16,6 +16,7 @@ function request(apiHandler, method, body, cookie = '') {
 
 test('public catalog falls back to the bundled products before Blob is initialized', async () => {
   delete process.env.BLOB_READ_WRITE_TOKEN;
+  delete process.env.BLOB_STORE_ID;
   const result = await request(handler, 'GET');
   const body = JSON.parse(result.value);
   assert.equal(result.statusCode, 200);
