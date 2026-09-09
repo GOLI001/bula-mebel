@@ -1,59 +1,35 @@
-import React from 'react';
+import { MessageCircle, X } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import { useCart } from '../context/CartContext';
 
 export default function MobileMenu() {
   const { isMobileMenuOpen, setIsMobileMenuOpen } = useCart();
-
-  const handleLinkClick = () => {
-    setIsMobileMenuOpen(false);
-  };
-
+  const closeRef = useRef(null);
+  const drawerRef = useRef(null);
+  useEffect(() => {
+    if (!isMobileMenuOpen) return undefined;
+    const handleKey = (event) => {
+      if (event.key === 'Escape') setIsMobileMenuOpen(false);
+      if (event.key === 'Tab') {
+        const nodes = drawerRef.current?.querySelectorAll('button, a[href]');
+        if (!nodes?.length) return;
+        const first = nodes[0]; const last = nodes[nodes.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener('keydown', handleKey); closeRef.current?.focus();
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [isMobileMenuOpen, setIsMobileMenuOpen]);
+  const close = () => setIsMobileMenuOpen(false);
   return (
     <>
-      <div
-        class={`mobile-menu-overlay ${isMobileMenuOpen ? 'active' : ''}`}
-        onClick={() => setIsMobileMenuOpen(false)}
-      ></div>
-
-      <div class={`mobile-menu-drawer ${isMobileMenuOpen ? 'active' : ''}`}>
-        <div class="mobile-menu-header">
-          <img src="/images/logo.svg" alt="Divan Bula Logo" style={{ height: '36px' }} />
-          <button
-            class="mobile-menu-close"
-            onClick={() => setIsMobileMenuOpen(false)}
-            aria-label="Закрыть меню"
-            type="button"
-          >
-            ✕
-          </button>
-        </div>
-
-        <nav class="mobile-nav-links">
-          <a href="#catalog" class="mobile-nav-item" onClick={handleLinkClick}>🛋️ Каталог мебели</a>
-          <a href="#about" class="mobile-nav-item" onClick={handleLinkClick}>🏭 О нашей фабрике</a>
-          <a href="#dealer" class="mobile-nav-item" onClick={handleLinkClick}>🤝 Дилерам & B2B</a>
-          <a href="#contacts" class="mobile-nav-item" onClick={handleLinkClick}>📍 Контакты в Астане</a>
-        </nav>
-
-        <div class="mobile-menu-footer">
-          <a
-            href="https://wa.me/77475560315?text=Здравствуйте!%20Хочу%20получить%20расчет%20мебели."
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-bula-primary"
-            style={{ width: '100%', justifyContent: 'center', marginBottom: '20px' }}
-          >
-            💬 Рассчитать мебель в WhatsApp
-          </a>
-
-          <div class="mobile-contact-info">
-            <div>📍 г. Астана, ул. Кабанбай Батыра 42</div>
-            <div>
-              📞 <a href="tel:+77475560315" style={{ color: 'var(--color-brand-gold-dark)', fontWeight: 800 }}>8 (747) 556-03-15</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <button className={`drawer-overlay ${isMobileMenuOpen ? 'active' : ''}`} type="button" onClick={close} tabIndex={isMobileMenuOpen ? 0 : -1} aria-label="Закрыть меню" />
+      <aside ref={drawerRef} id="mobile-navigation" className={`mobile-drawer ${isMobileMenuOpen ? 'active' : ''}`} aria-hidden={!isMobileMenuOpen} inert={!isMobileMenuOpen ? '' : undefined}>
+        <div className="drawer-head"><img src="/images/logo.svg" alt="Divan Bula" /><button ref={closeRef} className="icon-button" type="button" onClick={close} aria-label="Закрыть меню"><X size={22} /></button></div>
+        <nav className="mobile-nav" aria-label="Мобильная навигация"><a href="#catalog" onClick={close}>Каталог <span>01</span></a><a href="#production" onClick={close}>О фабрике <span>02</span></a><a href="#buyers" onClick={close}>Покупателям <span>03</span></a><a href="#dealer" onClick={close}>Дилерам <span>04</span></a><a href="#contacts" onClick={close}>Контакты <span>05</span></a></nav>
+        <div className="mobile-drawer-footer"><a className="button button-primary" href="https://wa.me/77475560315" target="_blank" rel="noreferrer"><MessageCircle size={18} /> Написать в WhatsApp</a><a href="tel:+77475560315">+7 747 556-03-15</a><span>Астана, Казахстан</span></div>
+      </aside>
     </>
   );
 }

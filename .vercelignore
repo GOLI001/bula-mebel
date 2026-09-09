@@ -1,0 +1,16 @@
+node_modules
+dist
+.env.local
+.env.*.local
+furniture-photo
+furniture-video
+textile
+variant-7-b-line
+css
+js
+images
+*.pdf
+catalog_page-1.png
+concept_page-*.png
+*.md
+*.txt

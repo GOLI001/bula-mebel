@@ -1,0 +1,4 @@
+import { ArrowRight, Boxes, Building2, Percent } from 'lucide-react';
+export default function DealerSection() {
+  return <section className="dealer-section" id="dealer"><div className="container dealer-inner"><div><span className="eyebrow">Для бизнеса</span><h2>Дизайнерам, дилерам и застройщикам</h2><p>Производим мягкую мебель для жилых и коммерческих проектов. Подготовим индивидуальное предложение и образцы материалов.</p><a className="button button-light" href="https://wa.me/77475560315?text=Здравствуйте!%20Интересуют%20условия%20сотрудничества%20B2B." target="_blank" rel="noreferrer">Получить условия <ArrowRight size={18} /></a></div><div className="dealer-benefits"><span><Percent /> Специальные B2B-цены</span><span><Boxes /> Серийное производство</span><span><Building2 /> Мебель по проекту</span></div></div></section>;
+}

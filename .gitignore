@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Raw photo/video sources. Optimized web assets live in public/media.
+furniture-photo/
+furniture-video/
+textile/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

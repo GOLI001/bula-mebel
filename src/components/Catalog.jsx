@@ -1,63 +1,33 @@
-import React, { useState } from 'react';
-import { PRODUCTS_DATA } from '../data/products';
+import { useState } from 'react';
+import { PRODUCT_CATEGORIES } from '../data/products';
+import { useCatalog } from '../context/CatalogContext';
 import ProductCard from './ProductCard';
+import ProductModal from './ProductModal';
 
 export default function Catalog() {
-  const [currentCategory, setCurrentCategory] = useState('all');
-
-  const filteredProducts = PRODUCTS_DATA.filter(
-    p => currentCategory === 'all' || p.category === currentCategory
-  );
+  const [category, setCategory] = useState('all');
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const { products: catalogProducts } = useCatalog();
+  const products = catalogProducts.filter((product) => category === 'all' || product.category === category);
 
   return (
-    <section class="section" id="catalog">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Официальный каталог</span>
-          <h2 class="section-title">Коллекция Мебели Divan Bula</h2>
-          <p class="section-desc">Выберите подходящий предмет или добавьте в корзину для мгновенного расчета.</p>
+    <section className="section catalog-section" id="catalog">
+      <div className="container">
+        <div className="section-heading split-heading">
+          <div><span className="eyebrow">Каталог</span><h2>Выберите свой диван</h2></div>
+          <p>Откройте карточку, чтобы посмотреть реальные фото, видео, размеры, материалы и доступные варианты.</p>
         </div>
-
-        {/* Categories Filter Tabs (Touch scroll on Mobile) */}
-        <div class="categories-tabs-wrapper">
-          <div class="categories-tabs">
-            <button
-              class={`cat-tab-btn ${currentCategory === 'all' ? 'active' : ''}`}
-              onClick={() => setCurrentCategory('all')}
-              type="button"
-            >
-              Все товары
-            </button>
-            <button
-              class={`cat-tab-btn ${currentCategory === 'sofas' ? 'active' : ''}`}
-              onClick={() => setCurrentCategory('sofas')}
-              type="button"
-            >
-              Диваны
-            </button>
-            <button
-              class={`cat-tab-btn ${currentCategory === 'tables' ? 'active' : ''}`}
-              onClick={() => setCurrentCategory('tables')}
-              type="button"
-            >
-              Столы
-            </button>
-            <button
-              class={`cat-tab-btn ${currentCategory === 'chairs' ? 'active' : ''}`}
-              onClick={() => setCurrentCategory('chairs')}
-              type="button"
-            >
-              Стулья
-            </button>
-          </div>
-        </div>
-
-        <div class="product-grid" id="catalog-grid">
-          {filteredProducts.map(product => (
-            <ProductCard key={product.id} product={product} />
+        <div className="category-tabs" role="group" aria-label="Фильтр каталога">
+          {PRODUCT_CATEGORIES.map((item) => (
+            <button key={item.id} type="button" className={category === item.id ? 'active' : ''} aria-pressed={category === item.id} onClick={() => setCategory(item.id)}>{item.label}</button>
           ))}
         </div>
+        <div className="product-grid">
+          {products.map((product) => <ProductCard key={product.id} product={product} onOpen={() => setSelectedProduct(product)} />)}
+        </div>
+        <p className="catalog-note">Цена зависит от выбранной ткани и конфигурации. Финальную стоимость подтвердит менеджер.</p>
       </div>
+      <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />
     </section>
   );
 }

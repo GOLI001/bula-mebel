@@ -1,41 +1,4 @@
-import React from 'react';
-
-export default function Footer() {
-  return (
-    <footer class="site-footer" id="contacts">
-      <div class="container">
-        <div class="footer-grid">
-          <div>
-            <img src="/images/logo.svg" alt="Divan Bula Logo" style={{ height: '48px', marginBottom: '20px', filter: 'brightness(2) contrast(0.5)' }} />
-            <p style={{ fontSize: '14px', color: '#AAA', lineHeight: 1.7 }}>
-              Официальная мебельная фабрика Divan Bula. Качество, проверенное годами.
-            </p>
-          </div>
-
-          <div>
-            <h4 style={{ color: '#FFF', marginBottom: '16px', fontSize: '15px' }}>Навигация</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', color: '#AAA' }}>
-              <a href="#catalog">Каталог продукции</a>
-              <a href="#about">О нашей фабрике</a>
-              <a href="#dealer">Оптовым покупателям</a>
-            </div>
-          </div>
-
-          <div>
-            <h4 style={{ color: '#FFF', marginBottom: '16px', fontSize: '15px' }}>Контакты в Астане</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', color: '#AAA' }}>
-              <div>📍 г. Астана, ул. Кабанбай Батыра 42</div>
-              <div>📞 <a href="tel:+77475560315" style={{ color: 'var(--color-brand-gold)' }}>8 (747) 556-03-15</a></div>
-              <div>💬 WhatsApp: <a href="https://wa.me/77475560315" target="_blank" rel="noopener noreferrer" style={{ color: '#25D366' }}>8 (747) 556-03-15</a></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <div>© 2026 Divan Bula. Все права защищены.</div>
-          <div style={{ color: 'var(--color-brand-gold)' }}>Официальная цветовая палитра логотипа бренда</div>
-        </div>
-      </div>
-    </footer>
-  );
+import { Instagram, MapPin, MessageCircle, Phone, Settings } from 'lucide-react';
+export default function Footer({ onOpenAdmin }) {
+  return <footer className="site-footer" id="contacts"><div className="container"><div className="footer-grid"><div className="footer-brand"><img src="/images/logo.svg" alt="Divan Bula" /><p>Мягкая мебель собственного производства для дома и бизнеса.</p></div><div><h3>Навигация</h3><a href="#catalog">Каталог</a><a href="#production">О фабрике</a><a href="#buyers">Покупателям</a><a href="#dealer">Дилерам</a></div><div><h3>Контакты</h3><a href="tel:+77475560315"><Phone size={17} /> +7 747 556-03-15</a><a href="https://wa.me/77475560315" target="_blank" rel="noreferrer"><MessageCircle size={17} /> WhatsApp</a><span><MapPin size={17} /> Астана, Казахстан</span></div><div><h3>Режим работы</h3><span>Пн–Сб: 10:00–19:00</span><span>Воскресенье: по записи</span><a href="https://instagram.com" target="_blank" rel="noreferrer"><Instagram size={17} /> Instagram</a></div></div><div className="footer-bottom"><span>© 2026 Divan Bula · Цены не являются публичной офертой</span><button type="button" className="admin-link" onClick={onOpenAdmin}><Settings size={14} /> Управление каталогом</button></div></div></footer>;
 }

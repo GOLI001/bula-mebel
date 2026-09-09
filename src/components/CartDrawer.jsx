@@ -1,111 +1,42 @@
-import React from 'react';
+import { MessageCircle, Minus, Plus, ShoppingBag, Trash2, X } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import { useCart } from '../context/CartContext';
 import { formatMoney } from '../data/products';
 
 export default function CartDrawer() {
-  const {
-    cart,
-    updateQty,
-    removeFromCart,
-    clearCart,
-    totalItems,
-    totalPrice,
-    isCartOpen,
-    setIsCartOpen
-  } = useCart();
-
-  const handleClose = () => {
-    setIsCartOpen(false);
-  };
-
-  const orderLines = cart.map(i => `• ${i.name} (x${i.qty}) — ${formatMoney(i.price * i.qty)} ₸`);
-  const waText = encodeURIComponent(
-    `Здравствуйте! Хочу оформить заказ из корзины Divan Bula:\n\n${orderLines.join('\n')}\n\nИтоговая сумма: ${formatMoney(totalPrice)} ₸\n\nПросьба уточнить наличие и сроки доставки!`
-  );
-  const waLink = `https://wa.me/77475560315?text=${waText}`;
-
+  const { cart, updateQty, removeFromCart, clearCart, totalItems, totalPrice, hasRequestPrice, isCartOpen, setIsCartOpen } = useCart();
+  const closeRef = useRef(null);
+  const drawerRef = useRef(null);
+  const close = () => setIsCartOpen(false);
+  useEffect(() => {
+    if (!isCartOpen) return undefined;
+    const previous = document.activeElement; const priorOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden'; closeRef.current?.focus();
+    const handleKey = (event) => {
+      if (event.key === 'Escape') close();
+      if (event.key === 'Tab') {
+        const nodes = drawerRef.current?.querySelectorAll('button, a[href]');
+        if (!nodes?.length) return;
+        const first = nodes[0]; const last = nodes[nodes.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => { document.body.style.overflow = priorOverflow; document.removeEventListener('keydown', handleKey); previous?.focus?.(); };
+  }, [isCartOpen]);
+  const orderText = encodeURIComponent(`Здравствуйте! Хочу оформить заказ:\n\n${cart.map((item) => `• ${item.name}, ${item.qty} шт. — ${item.price ? `${formatMoney(item.price * item.qty)} ₸` : 'цена по запросу'}`).join('\n')}\n\n${totalPrice ? `Сумма товаров с указанной ценой: ${formatMoney(totalPrice)} ₸` : 'Прошу рассчитать стоимость заказа.'}`);
   return (
     <>
-      <div
-        class={`cart-overlay ${isCartOpen ? 'active' : ''}`}
-        onClick={handleClose}
-      ></div>
-
-      <div class={`cart-drawer ${isCartOpen ? 'active' : ''}`}>
-        <div class="cart-header">
-          <div class="cart-header-title">
-            <span>🛒 Корзина</span>
-            <span style={{ fontSize: '14px', color: 'var(--color-text-muted)' }}>
-              ({totalItems} {totalItems === 1 ? 'товар' : 'товаров'})
-            </span>
-          </div>
-          <button class="cart-close-btn" onClick={handleClose} title="Закрыть" type="button">
-            ✕
-          </button>
+      <button className={`drawer-overlay cart-overlay ${isCartOpen ? 'active' : ''}`} type="button" onClick={close} tabIndex={isCartOpen ? 0 : -1} aria-label="Закрыть корзину" />
+      <aside ref={drawerRef} className={`cart-drawer ${isCartOpen ? 'active' : ''}`} role="dialog" aria-modal="true" aria-label="Корзина" aria-hidden={!isCartOpen} inert={!isCartOpen ? '' : undefined}>
+        <div className="drawer-head"><div><strong>Корзина</strong><span>{totalItems} товар(а)</span></div><button ref={closeRef} className="icon-button" type="button" onClick={close} aria-label="Закрыть корзину"><X size={22} /></button></div>
+        <div className="cart-body">
+          {cart.length === 0 ? <div className="cart-empty"><ShoppingBag size={42} /><h3>Корзина пока пуста</h3><p>Добавьте понравившуюся модель — она сохранится здесь.</p><a href="#catalog" className="button button-primary" onClick={close}>Перейти в каталог</a></div>
+            : cart.map((item) => <article className="cart-item" key={item.id}><img src={item.images[0]} alt={item.name} /><div className="cart-item-info"><span>{item.categoryLabel}</span><strong>{item.name}</strong><b>{item.price ? `${formatMoney(item.price * item.qty)} ₸` : 'Цена по запросу'}</b><div className="cart-item-controls"><div className="quantity compact"><button type="button" onClick={() => updateQty(item.id, item.qty - 1)} aria-label="Уменьшить"><Minus size={15} /></button><span>{item.qty}</span><button type="button" onClick={() => updateQty(item.id, item.qty + 1)} aria-label="Увеличить"><Plus size={15} /></button></div><button className="remove-button" type="button" onClick={() => removeFromCart(item.id)} aria-label={`Удалить ${item.name}`}><Trash2 size={17} /></button></div></div></article>)}
         </div>
-
-        <div class="cart-body">
-          {cart.length === 0 ? (
-            <div class="cart-empty-box">
-              <div class="cart-empty-icon">🛋️</div>
-              <div class="cart-empty-text">
-                Ваша корзина пока пуста.<br />Выберите понравившуюся мебель в каталоге!
-              </div>
-              <button
-                class="btn-bula-primary"
-                onClick={handleClose}
-                type="button"
-                style={{ fontSize: '13px', padding: '12px 24px' }}
-              >
-                Перейти к каталогу
-              </button>
-            </div>
-          ) : (
-            cart.map(item => (
-              <div class="cart-item-card" key={item.id}>
-                <img src={item.image} alt={item.name} class="cart-item-img" />
-                <div class="cart-item-info">
-                  <div class="cart-item-title">{item.name}</div>
-                  <div class="cart-item-price">{formatMoney(item.price * item.qty)} ₸</div>
-                  <div class="cart-qty-row">
-                    <button class="qty-btn" onClick={() => updateQty(item.id, -1)} type="button">-</button>
-                    <span class="qty-val">{item.qty}</span>
-                    <button class="qty-btn" onClick={() => updateQty(item.id, 1)} type="button">+</button>
-                  </div>
-                </div>
-                <button
-                  class="cart-item-remove"
-                  onClick={() => removeFromCart(item.id)}
-                  type="button"
-                  title="Удалить товар"
-                >
-                  ✕
-                </button>
-              </div>
-            ))
-          )}
-        </div>
-
-        {cart.length > 0 && (
-          <div class="cart-footer">
-            <div class="cart-subtotal-row">
-              <span>Итого:</span>
-              <span class="cart-total-price">{formatMoney(totalPrice)} ₸</span>
-            </div>
-            <a
-              href={waLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-whatsapp-checkout"
-            >
-              <span>💬 Оформить заказ в WhatsApp</span>
-            </a>
-            <button class="btn-clear-cart" onClick={clearCart} type="button">
-              Очистить корзину
-            </button>
-          </div>
-        )}
-      </div>
+        {cart.length > 0 && <div className="cart-footer"><div className="cart-total"><span>{hasRequestPrice ? 'Предварительно' : 'Итого'}</span><strong>{totalPrice ? `${formatMoney(totalPrice)} ₸` : 'По запросу'}</strong></div><p>{hasRequestPrice ? 'В корзине есть модели с индивидуальным расчётом. Менеджер рассчитает полную стоимость.' : 'Финальную стоимость, ткань и срок изготовления подтвердит менеджер.'}</p><a className="button whatsapp-button" href={`https://wa.me/77475560315?text=${orderText}`} target="_blank" rel="noreferrer"><MessageCircle size={19} /> Оформить в WhatsApp</a><button className="clear-cart" type="button" onClick={clearCart}>Очистить корзину</button></div>}
+      </aside>
     </>
   );
 }

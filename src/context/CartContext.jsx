@@ -1,109 +1,77 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { PRODUCTS_DATA } from '../data/products';
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useCatalog } from './CatalogContext';
 
-const CartContext = createContext();
+const CartContext = createContext(null);
+const STORAGE_KEY = 'divan_bula_cart_v2';
 
-function safeGetStorage(key) {
+function loadCart() {
   try {
-    const val = localStorage.getItem(key);
-    return val ? JSON.parse(val) : null;
-  } catch (e) {
-    return null;
+    const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .filter((item) => typeof item?.id === 'string' && Number.isFinite(Number(item?.qty)))
+      .map((item) => ({ id: item.id, qty: Math.max(1, Math.min(20, Number(item.qty))) }));
+  } catch {
+    return [];
   }
 }
 
-function safeSetStorage(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch (e) {}
-}
-
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState(() => safeGetStorage('divan_bula_cart') || []);
+  const { getProductById } = useCatalog();
+  const [cartState, setCartState] = useState(loadCart);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [toasts, setToasts] = useState([]);
-  const [cartBounce, setCartBounce] = useState(false);
+  const timers = useRef(new Set());
 
   useEffect(() => {
-    safeSetStorage('divan_bula_cart', cart);
-  }, [cart]);
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(cartState)); } catch { /* private mode */ }
+  }, [cartState]);
+  useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
   const showToast = (message) => {
-    const id = Date.now();
-    setToasts(prev => [...prev, { id, message }]);
-    setTimeout(() => {
-      setToasts(prev => prev.filter(t => t.id !== id));
+    const id = crypto.randomUUID?.() || `${Date.now()}-${Math.random()}`;
+    setToasts((items) => [...items, { id, message }]);
+    const timer = setTimeout(() => {
+      setToasts((items) => items.filter((toast) => toast.id !== id));
+      timers.current.delete(timer);
     }, 2800);
+    timers.current.add(timer);
   };
 
-  const addToCart = (productId) => {
-    const product = PRODUCTS_DATA.find(p => p.id === productId);
+  const addToCart = (productId, quantity = 1) => {
+    const product = getProductById(productId);
     if (!product) return;
-
-    setCart(prev => {
-      const existing = prev.find(item => item.id === productId);
-      if (existing) {
-        return prev.map(item =>
-          item.id === productId ? { ...item, qty: item.qty + 1 } : item
-        );
-      }
-      return [...prev, { ...product, qty: 1 }];
+    setCartState((items) => {
+      const current = items.find((item) => item.id === productId);
+      if (current) return items.map((item) => item.id === productId ? { ...item, qty: Math.min(20, item.qty + quantity) } : item);
+      return [...items, { id: productId, qty: Math.min(20, Math.max(1, quantity)) }];
     });
-
-    setCartBounce(true);
-    setTimeout(() => setCartBounce(false), 300);
-    showToast(`Товар "${product.name}" добавлен в корзину!`);
+    showToast(`${product.name} добавлен в корзину`);
   };
 
-  const updateQty = (productId, change) => {
-    setCart(prev => {
-      return prev
-        .map(item => {
-          if (item.id === productId) {
-            const newQty = item.qty + change;
-            return newQty > 0 ? { ...item, qty: newQty } : null;
-          }
-          return item;
-        })
-        .filter(Boolean);
-    });
-  };
+  const updateQty = (productId, quantity) => setCartState((items) => items
+    .map((item) => item.id === productId ? { ...item, qty: Math.min(20, quantity) } : item)
+    .filter((item) => item.qty > 0));
+  const removeFromCart = (productId) => setCartState((items) => items.filter((item) => item.id !== productId));
+  const clearCart = () => setCartState([]);
 
-  const removeFromCart = (productId) => {
-    setCart(prev => prev.filter(item => item.id !== productId));
-  };
-
-  const clearCart = () => {
-    setCart([]);
-  };
-
+  const cart = useMemo(() => cartState
+    .map((item) => ({ ...getProductById(item.id), qty: item.qty }))
+    .filter((item) => item.id), [cartState, getProductById]);
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-  const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  const totalPrice = cart.reduce((sum, item) => sum + (item.price || 0) * item.qty, 0);
+  const hasRequestPrice = cart.some((item) => !item.price);
 
   return (
-    <CartContext.Provider
-      value={{
-        cart,
-        addToCart,
-        updateQty,
-        removeFromCart,
-        clearCart,
-        totalItems,
-        totalPrice,
-        isCartOpen,
-        setIsCartOpen,
-        isMobileMenuOpen,
-        setIsMobileMenuOpen,
-        toasts,
-        cartBounce
-      }}
-    >
+    <CartContext.Provider value={{ cart, addToCart, updateQty, removeFromCart, clearCart, totalItems, totalPrice, hasRequestPrice, isCartOpen, setIsCartOpen, isMobileMenuOpen, setIsMobileMenuOpen, toasts }}>
       {children}
     </CartContext.Provider>
   );
 }
 
 export function useCart() {
-  return useContext(CartContext);
+  const context = useContext(CartContext);
+  if (!context) throw new Error('useCart must be used inside CartProvider');
+  return context;
 }
