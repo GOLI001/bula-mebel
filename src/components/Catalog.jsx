@@ -7,6 +7,7 @@ import ProductModal from './ProductModal';
 export default function Catalog() {
   const [category, setCategory] = useState('all');
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedVariant, setSelectedVariant] = useState(null);
   const { products: catalogProducts, catalogError } = useCatalog();
   const products = catalogProducts.filter((product) => category === 'all' || product.category === category);
 
@@ -24,11 +25,27 @@ export default function Catalog() {
         </div>
         {catalogError && <p className="catalog-sync-error" role="status">Показываем сохранённую версию каталога. Обновление данных временно недоступно.</p>}
         <div className="product-grid">
-          {products.map((product) => <ProductCard key={product.id} product={product} onOpen={() => setSelectedProduct(product)} />)}
+          {products.map((product) => (
+            <ProductCard 
+              key={product.id} 
+              product={product} 
+              onOpen={(prod, variant) => {
+                setSelectedProduct(prod);
+                setSelectedVariant(variant);
+              }} 
+            />
+          ))}
         </div>
         <p className="catalog-note">Цена зависит от выбранной ткани и конфигурации. Финальную стоимость подтвердит менеджер.</p>
       </div>
-      <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />
+      <ProductModal 
+        product={selectedProduct} 
+        initialVariant={selectedVariant}
+        onClose={() => {
+          setSelectedProduct(null);
+          setSelectedVariant(null);
+        }} 
+      />
     </section>
   );
 }

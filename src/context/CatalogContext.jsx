@@ -1,117 +1,146 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import axios from 'axios';
 import { PRODUCTS_DATA } from '../data/products';
 
 const CatalogContext = createContext(null);
-const STORAGE_KEY = 'divan_bula_catalog_v1';
 
-function readLocalCatalog() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-    return Array.isArray(saved) && saved.length ? saved : null;
-  } catch {
-    return null;
-  }
-}
+function normalizeProduct(raw) {
+  // Extract images from variants or fallback
+  const variantImages = (raw.variants || []).flatMap(v => (v.images || []).map(img => img.url)).filter(Boolean);
+  const images = variantImages.length > 0 
+    ? variantImages 
+    : (raw.images && raw.images.length ? raw.images : ['/media/products/orda-1.webp']);
 
-async function uploadCloudImage(dataUrl, productId) {
-  try {
-    const response = await fetch('/api/catalog-images', {
-      method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ dataUrl, productId })
-    });
-    const result = await response.json().catch(() => ({}));
-    if (!response.ok) {
-      if (response.status === 401) throw new Error('Сессия завершена. Выйдите и войдите в админ-панель снова.');
-      if (response.status === 413) throw new Error('Фотография слишком большая. Выберите другое изображение.');
-      throw new Error(result.message || 'Не удалось загрузить фотографию в Blob.');
-    }
-    return result.url;
-  } catch (error) {
-    if (error instanceof Error && /Сессия|слишком большая|Blob/.test(error.message)) throw error;
-    throw new Error('Не удалось передать фотографию. Проверьте соединение и повторите.');
-  }
+  const colors = (raw.variants && raw.variants.length > 0)
+    ? raw.variants.map(v => v.color_name)
+    : (raw.colors || ['Молочный', 'Бежевый', 'Серый']);
+
+  return {
+    id: raw.id,
+    name: raw.name || raw.title || 'Диван',
+    category: raw.category || 'straight',
+    categoryLabel: raw.category_label || raw.categoryLabel || 'Прямой диван',
+    price: raw.price || 0,
+    oldPrice: raw.old_price || raw.oldPrice || null,
+    dimensions: raw.dimensions || '210 × 95 × 84 см',
+    sleepingArea: raw.sleeping_area || raw.sleepingArea || 'Не предусмотрено',
+    seats: raw.seats || 3,
+    availability: raw.availability || 'Под заказ · от 14 дней',
+    badge: raw.badge || 'Новинка',
+    description: raw.description || '',
+    video: raw.video || null,
+    variants: raw.variants || [],
+    colors: colors,
+    images: images,
+    materials: Array.isArray(raw.materials) ? raw.materials : (raw.materials ? [raw.materials] : ['Ткань на выбор', 'Деревянный мебельный каркас']),
+    features: Array.isArray(raw.features) ? raw.features : (raw.features ? [raw.features] : ['Изготовление в Астане', 'Выбор ткани и цвета'])
+  };
 }
 
 export function CatalogProvider({ children }) {
-  const localCatalog = useMemo(readLocalCatalog, []);
-  const [products, setProducts] = useState(localCatalog || PRODUCTS_DATA);
-  const [isCatalogLoading, setIsCatalogLoading] = useState(!import.meta.env.DEV);
+  const [products, setProducts] = useState(PRODUCTS_DATA);
+  const [isCatalogLoading, setIsCatalogLoading] = useState(true);
   const [catalogError, setCatalogError] = useState('');
-  const [hasLocalDraft, setHasLocalDraft] = useState(false);
 
-  const loadCloudCatalog = useCallback(async () => {
-    if (import.meta.env.DEV) return;
+  const loadProducts = useCallback(async () => {
     try {
-      const response = await fetch('/api/catalog', { cache: 'no-store', headers: { Accept: 'application/json' } });
-      if (!response.ok) throw new Error('Не удалось загрузить облачный каталог.');
-      const data = await response.json();
-      if (!Array.isArray(data.products) || !data.products.length) throw new Error('Получен неверный каталог.');
-      if (data.source === 'default' && localCatalog) {
-        setProducts(localCatalog);
-        setHasLocalDraft(true);
+      setIsCatalogLoading(true);
+      const res = await axios.get('/api/catalog/products/');
+      if (Array.isArray(res.data) && res.data.length > 0) {
+        setProducts(res.data.map(normalizeProduct));
       } else {
-        setProducts(data.products);
-        setHasLocalDraft(false);
-        localStorage.removeItem(STORAGE_KEY);
+        setProducts(PRODUCTS_DATA);
       }
       setCatalogError('');
-    } catch (error) {
-      setCatalogError(error.message || 'Не удалось загрузить облачный каталог.');
+    } catch (err) {
+      console.warn('Could not load products from API, using fallback data', err);
+      // Fallback to initial PRODUCTS_DATA
+      setProducts(PRODUCTS_DATA);
     } finally {
       setIsCatalogLoading(false);
     }
-  }, [localCatalog]);
+  }, []);
 
   useEffect(() => {
-    if (import.meta.env.DEV) {
-      setIsCatalogLoading(false);
-      return undefined;
-    }
-    loadCloudCatalog();
-    const refresh = () => { if (document.visibilityState === 'visible') loadCloudCatalog(); };
-    document.addEventListener('visibilitychange', refresh);
-    return () => document.removeEventListener('visibilitychange', refresh);
-  }, [loadCloudCatalog]);
+    loadProducts();
+  }, [loadProducts]);
 
-  const persist = useCallback(async (next) => {
-    if (import.meta.env.DEV) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-      setProducts(next);
-      return next;
-    }
-    const cloudReady = await Promise.all(next.map(async (product) => ({
-      ...product,
-      images: await Promise.all(product.images.map((image) => image.startsWith('data:image/') ? uploadCloudImage(image, product.id) : image))
-    })));
-    const response = await fetch('/api/catalog', {
-      method: 'PUT', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ products: cloudReady })
-    });
-    if (!response.ok) {
-      if (response.status === 401) throw new Error('Сессия завершена. Выйдите и войдите в админ-панель снова.');
-      throw new Error('Не удалось сохранить каталог в облаке.');
-    }
-    const data = await response.json();
-    setProducts(data.products);
-    setHasLocalDraft(false);
-    localStorage.removeItem(STORAGE_KEY);
-    return data.products;
-  }, []);
+  const getAdminHeaders = () => {
+    const token = localStorage.getItem('adminToken');
+    return token ? { headers: { Authorization: `Bearer ${token}` } } : {};
+  };
 
-  const updateProduct = useCallback((product) => persist(products.map((item) => item.id === product.id ? product : item)), [persist, products]);
-  const addProduct = useCallback((product) => persist([...products, product]), [persist, products]);
-  const removeProduct = useCallback((productId) => persist(products.filter((item) => item.id !== productId)), [persist, products]);
-  const replaceCatalog = useCallback((next) => persist(next), [persist]);
-  const resetCatalog = useCallback(() => persist(PRODUCTS_DATA), [persist]);
-  const getProductById = useCallback((productId) => products.find((product) => product.id === productId), [products]);
+  const createProduct = useCallback(async (productData) => {
+    const res = await axios.post('/api/admin/products/', productData, getAdminHeaders());
+    await loadProducts();
+    return res.data;
+  }, [loadProducts]);
 
-  const uploadImage = useCallback(async (dataUrl, productId) => {
-    if (import.meta.env.DEV) return dataUrl;
-    return uploadCloudImage(dataUrl, productId);
-  }, []);
+  const updateProduct = useCallback(async (productId, productData) => {
+    const res = await axios.put(`/api/admin/products/${productId}`, productData, getAdminHeaders());
+    await loadProducts();
+    return res.data;
+  }, [loadProducts]);
+
+  const removeProduct = useCallback(async (productId) => {
+    await axios.delete(`/api/admin/products/${productId}`, getAdminHeaders());
+    await loadProducts();
+  }, [loadProducts]);
+
+  const addVariant = useCallback(async (productId, variantData) => {
+    const res = await axios.post(`/api/admin/products/${productId}/variants/`, variantData, getAdminHeaders());
+    await loadProducts();
+    return res.data;
+  }, [loadProducts]);
+
+  const removeVariant = useCallback(async (variantId) => {
+    await axios.delete(`/api/admin/variants/${variantId}`, getAdminHeaders());
+    await loadProducts();
+  }, [loadProducts]);
+
+  const addImageToVariant = useCallback(async (variantId, imageData) => {
+    const res = await axios.post(`/api/admin/variants/${variantId}/images/`, imageData, getAdminHeaders());
+    await loadProducts();
+    return res.data;
+  }, [loadProducts]);
+
+  const removeImage = useCallback(async (imageId) => {
+    await axios.delete(`/api/admin/images/${imageId}`, getAdminHeaders());
+    await loadProducts();
+  }, [loadProducts]);
+
+  const getProductById = useCallback((id) => {
+    return products.find(p => p.id === id || String(p.id) === String(id));
+  }, [products]);
 
   const value = useMemo(() => ({
-    products, updateProduct, addProduct, removeProduct, replaceCatalog, resetCatalog, getProductById, uploadImage,
-    isCatalogLoading, catalogError, hasLocalDraft, reloadCatalog: loadCloudCatalog
-  }), [products, updateProduct, addProduct, removeProduct, replaceCatalog, resetCatalog, getProductById, uploadImage, isCatalogLoading, catalogError, hasLocalDraft, loadCloudCatalog]);
+    products,
+    isCatalogLoading,
+    catalogError,
+    loadProducts,
+    createProduct,
+    updateProduct,
+    removeProduct,
+    addVariant,
+    removeVariant,
+    addImageToVariant,
+    removeImage,
+    getProductById
+  }), [
+    products,
+    isCatalogLoading,
+    catalogError,
+    loadProducts,
+    createProduct,
+    updateProduct,
+    removeProduct,
+    addVariant,
+    removeVariant,
+    addImageToVariant,
+    removeImage,
+    getProductById
+  ]);
+
   return <CatalogContext.Provider value={value}>{children}</CatalogContext.Provider>;
 }
 
