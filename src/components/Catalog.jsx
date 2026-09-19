@@ -15,8 +15,8 @@ export default function Catalog() {
     <section className="section catalog-section" id="catalog">
       <div className="container">
         <div className="section-heading split-heading">
-          <div><span className="eyebrow">Каталог</span><h2>Выберите свой диван</h2></div>
-          <p>Откройте карточку, чтобы посмотреть реальные фото, видео, размеры, материалы и доступные варианты.</p>
+          <div><span className="eyebrow">Каталог</span><h2>Коллекция мебели</h2></div>
+          <p>Диваны, столы и стулья фабричного качества. Откройте карточку, чтобы посмотреть фото, размеры и доступные цвета.</p>
         </div>
         <div className="category-tabs" role="group" aria-label="Фильтр каталога">
           {PRODUCT_CATEGORIES.map((item) => (

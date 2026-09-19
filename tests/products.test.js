@@ -14,7 +14,11 @@ test('catalog has unique, complete products and existing media', async () => {
     assert.ok(product.images.length >= 1);
     assert.ok(product.features.length >= 3 && product.materials.length >= 3);
     assert.equal(getProduct(product.id), product);
-    await Promise.all([...product.images, ...(product.video ? [product.video] : [])].map((path) => access(`public${path}`)));
+    await Promise.all(
+      [...product.images, ...(product.video ? [product.video] : [])]
+        .filter((path) => path && !path.startsWith('http://') && !path.startsWith('https://'))
+        .map((path) => access(`public${path}`))
+    );
   }
 });
 

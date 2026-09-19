@@ -14,6 +14,8 @@ const CATEGORIES = [
   { id: 'corner', label: 'Угловой диван' },
   { id: 'modular', label: 'Модульный диван' },
   { id: 'designer', label: 'Дизайнерский диван' },
+  { id: 'tables', label: 'Стол' },
+  { id: 'chairs', label: 'Стул / Кресло' },
 ];
 
 const POPULAR_COLORS = [

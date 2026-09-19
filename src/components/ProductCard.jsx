@@ -28,7 +28,7 @@ export default function ProductCard({ product, onOpen }) {
         onClick={() => onOpen(product, activeVariant)} 
         aria-label={`Открыть карточку ${product.name}`}
       >
-        <img src={activeImage} alt={`Диван ${product.name} в цвете ${activeVariant?.color_name || ''}`} loading="lazy" />
+        <img src={activeImage} alt={`${product.name} в цвете ${activeVariant?.color_name || ''}`} loading="lazy" />
         <span className="product-badge">{product.badge}</span>
         {product.video && <span className="video-pill"><Play size={13} fill="currentColor" /> Есть видео</span>}
       </button>
@@ -44,7 +44,7 @@ export default function ProductCard({ product, onOpen }) {
           <ArrowUpRight size={20} />
         </button>
 
-        <p className="product-dimensions">{product.dimensions} · {product.seats} мест</p>
+        <p className="product-dimensions">{product.dimensions}{product.seats ? ` · ${product.seats} мест` : ''}</p>
 
         {/* Dynamic Interactive Color Swatches */}
         <div className="color-swatches" aria-label="Доступные цвета" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>

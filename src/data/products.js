@@ -76,12 +76,55 @@ const PHOTO_PRODUCTS = [
   description: `${categoryLabel} ${name} из реализованной коллекции Divan Bula. Точную конфигурацию, размер, ткань и стоимость согласуем индивидуально.`
 }));
 
-export const PRODUCTS_DATA = [...FEATURED_PRODUCTS, ...PHOTO_PRODUCTS];
+import { PARADISE_RAW_PRODUCTS } from './paradiseProductsData.js';
+
+const PARADISE_PRODUCTS = PARADISE_RAW_PRODUCTS.map((item, idx) => ({
+  id: `paradise-${idx + 1}`,
+  name: item.name,
+  category: item.category,
+  categoryLabel: item.category_label,
+  price: item.price,
+  oldPrice: item.old_price,
+  dimensions: item.dimensions || 'Стандартные габариты',
+  sleepingArea: 'Не предусмотрено',
+  seats: item.seats || (item.category === 'tables' ? 4 : 1),
+  availability: item.availability || 'В наличии на складе',
+  badge: item.badge || 'В наличии',
+  rating: 4.9,
+  reviewCount: 4 + (idx % 8),
+  images: item.variants && item.variants[0]?.images?.length ? item.variants[0].images : ['https://paradise-mebel.vercel.app/uploads/51700-1.png'],
+  video: null,
+  colors: item.variants ? item.variants.map(v => v.color_name) : ['Орех тёмный'],
+  variants: item.variants ? item.variants.map((v, vIdx) => ({
+    id: (idx + 1) * 100 + vIdx + 1,
+    color_name: v.color_name,
+    color_hex: v.color_hex || '#CCCCCC',
+    price_override: v.price_override,
+    images: (v.images || []).map((imgUrl, iIdx) => ({
+      id: (idx + 1) * 1000 + vIdx * 10 + iIdx + 1,
+      url: imgUrl,
+      alt_text: v.color_name
+    }))
+  })) : [],
+  materials: item.category === 'tables' 
+    ? ['Массив дерева / МДФ', 'Износостойкое покрытие', 'Усиленная фурнитура']
+    : ['Эргономичный каркас', 'Качественная обивка', 'Надежные опоры'],
+  features: item.category === 'tables'
+    ? ['Раздвижной механизм', 'Устойчивая конструкция', 'Современный дизайн']
+    : ['Мягкая удобная посадка', 'Прочные материалы', 'Стильный силуэт'],
+  description: item.description
+}));
+
+export const PRODUCTS_DATA = [...FEATURED_PRODUCTS, ...PARADISE_PRODUCTS, ...PHOTO_PRODUCTS];
 
 export const PRODUCT_CATEGORIES = [
-  { id: 'all', label: 'Все модели' }, { id: 'straight', label: 'Прямые' },
-  { id: 'corner', label: 'Угловые' }, { id: 'modular', label: 'Модульные' },
-  { id: 'designer', label: 'Дизайнерские' }
+  { id: 'all', label: 'Все модели' }, 
+  { id: 'straight', label: 'Прямые' },
+  { id: 'corner', label: 'Угловые' }, 
+  { id: 'modular', label: 'Модульные' },
+  { id: 'designer', label: 'Дизайнерские' },
+  { id: 'tables', label: 'Столы' },
+  { id: 'chairs', label: 'Стулья и кресла' }
 ];
 
 export const FABRIC_COLLECTIONS = [

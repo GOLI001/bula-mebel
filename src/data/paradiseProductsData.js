@@ -1,0 +1,1883 @@
+export const PARADISE_RAW_PRODUCTS = [
+  {
+    "name": "Стол Джапанди, круглый раздвижной 110→200 см, орех",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 120000.0,
+    "old_price": null,
+    "dimensions": "Орех тёмный · Ø 110 см · в разложенном виде 200×110 см · В 75 см",
+    "seats": 4,
+    "badge": "30 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол Джапанди, круглый раздвижной 110→200 см, орех. Орех тёмный · Ø 110 см · в разложенном виде 200×110 см · В 75 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/51700-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/51700-1.png"
+        ]
+      },
+      {
+        "color_name": "Натуральный дуб",
+        "color_hex": "#C19A6B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/51700-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол BOZEN 501, круглый раздвижной 110→250 см",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 100000.0,
+    "old_price": null,
+    "dimensions": "Дуб натуральный · Ø 110 см · вставки: 156,5 · 203 · 249,5 см · В 75 см",
+    "seats": 4,
+    "badge": "25 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол BOZEN 501, круглый раздвижной 110→250 см. Дуб натуральный · Ø 110 см · вставки: 156,5 · 203 · 249,5 см · В 75 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/501-bosen-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Натуральный дуб",
+        "color_hex": "#C19A6B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/501-bosen-1.png"
+        ]
+      },
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/501-bosen-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол Lagom, овальный раздвижной 140→240 см",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 140000.0,
+    "old_price": null,
+    "dimensions": "Дуб натуральный · 140×90 см · с одной вставкой 190×90 · с двумя 240×90 · В 75 см",
+    "seats": 4,
+    "badge": "3 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол Lagom, овальный раздвижной 140→240 см. Дуб натуральный · 140×90 см · с одной вставкой 190×90 · с двумя 240×90 · В 75 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/pl1008-ash-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Натуральный дуб",
+        "color_hex": "#C19A6B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1008-ash-1.png"
+        ]
+      },
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1008-ash-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол Noir, раздвижной 140→180 см",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 100000.0,
+    "old_price": null,
+    "dimensions": "Чёрный · 140×80 см · в разложенном виде 180×80 см",
+    "seats": 4,
+    "badge": "3 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол Noir, раздвижной 140→180 см. Чёрный · 140×80 см · в разложенном виде 180×80 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/522-mdf-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Глубокий чёрный",
+        "color_hex": "#222222",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/522-mdf-1.png"
+        ]
+      },
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/522-mdf-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол лофт 140→180 см Inno 51900",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 90000.0,
+    "old_price": null,
+    "dimensions": "Орех / чёрный · 140×85 см · в разложенном виде 180×85 см",
+    "seats": 4,
+    "badge": "3 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол лофт 140→180 см Inno 51900. Орех / чёрный · 140×85 см · в разложенном виде 180×85 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/inno-51900-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/inno-51900-1.png"
+        ]
+      },
+      {
+        "color_name": "Натуральный дуб",
+        "color_hex": "#C19A6B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/inno-51900-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол Vega, раздвижной 190→340 см",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 230000.0,
+    "old_price": null,
+    "dimensions": "Ясень / чёрные ножки · 190×90 см · в разложенном виде 230, 270 и 340 см · В 75 см",
+    "seats": 4,
+    "badge": "3 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол Vega, раздвижной 190→340 см. Ясень / чёрные ножки · 190×90 см · в разложенном виде 230, 270 и 340 см · В 75 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/pl1060-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Светлый ясень",
+        "color_hex": "#D7C4A5",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1060-1.png"
+        ]
+      },
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1060-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол компактный раздвижной 120→160 см PL1086",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 90000.0,
+    "old_price": null,
+    "dimensions": "Орех · 120×80 см · в разложенном виде 160×80 · В 76 см",
+    "seats": 4,
+    "badge": "3 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол компактный раздвижной 120→160 см PL1086. Орех · 120×80 см · в разложенном виде 160×80 · В 76 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/pl1086-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1086-1.png"
+        ]
+      },
+      {
+        "color_name": "Натуральный дуб",
+        "color_hex": "#C19A6B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1086-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол Monza, круглый раздвижной 100→180 см",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 100000.0,
+    "old_price": null,
+    "dimensions": "Белый мрамор · Ø 100 см · в разложенном виде 180 см · В 76 см",
+    "seats": 4,
+    "badge": "3 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол Monza, круглый раздвижной 100→180 см. Белый мрамор · Ø 100 см · в разложенном виде 180 см · В 76 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/502-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Белый мрамор",
+        "color_hex": "#F5F5F5",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/502-1.png"
+        ]
+      },
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/502-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол овальный на рифлёной опоре PL1037 Walnut",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 145000.0,
+    "old_price": null,
+    "dimensions": "Орех тёмный · 160×90 см · в разложенном виде 200×90 · В 77 см",
+    "seats": 4,
+    "badge": "2 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол овальный на рифлёной опоре PL1037 Walnut. Орех тёмный · 160×90 см · в разложенном виде 200×90 · В 77 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/pl1037-wal-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1037-wal-1.png"
+        ]
+      },
+      {
+        "color_name": "Натуральный дуб",
+        "color_hex": "#C19A6B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1037-wal-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол раздвижной 190→270 см PL1044 ASH",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 205000.0,
+    "old_price": null,
+    "dimensions": "Ясень / чёрные ножки · 190×95 см · в разложенном виде 230 и 270 см · В 75 см",
+    "seats": 4,
+    "badge": "2 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол раздвижной 190→270 см PL1044 ASH. Ясень / чёрные ножки · 190×95 см · в разложенном виде 230 и 270 см · В 75 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/pl1044-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Светлый ясень",
+        "color_hex": "#D7C4A5",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1044-1.png"
+        ]
+      },
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1044-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол овальный на рифлёной опоре PL1037 ASH",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 145000.0,
+    "old_price": null,
+    "dimensions": "Ясень светлый · 160×90 см · в разложенном виде 200×90 · В 77 см",
+    "seats": 4,
+    "badge": "2 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол овальный на рифлёной опоре PL1037 ASH. Ясень светлый · 160×90 см · в разложенном виде 200×90 · В 77 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/pl1037-ash-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Светлый ясень",
+        "color_hex": "#D7C4A5",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1037-ash-1.png"
+        ]
+      },
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1037-ash-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол Джапанди, круглый раздвижной 110→200 см, белый",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 115000.0,
+    "old_price": null,
+    "dimensions": "Белый · Ø 110 см · в разложенном виде 200×110 см · В 75 см",
+    "seats": 4,
+    "badge": "1 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол Джапанди, круглый раздвижной 110→200 см, белый. Белый · Ø 110 см · в разложенном виде 200×110 см · В 75 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/51401-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Белый мрамор",
+        "color_hex": "#F5F5F5",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/51401-1.png"
+        ]
+      },
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/51401-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол Лофт 180×80 см",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 80000.0,
+    "old_price": null,
+    "dimensions": "Орех / чёрный · 180×80 см · В 76 см",
+    "seats": 4,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол Лофт 180×80 см. Орех / чёрный · 180×80 см · В 76 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/51500-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/51500-1.png"
+        ]
+      },
+      {
+        "color_name": "Натуральный дуб",
+        "color_hex": "#C19A6B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/51500-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол Фараон, круглый раздвижной 110→190 см, орех",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 190000.0,
+    "old_price": null,
+    "dimensions": "Орех тёмный · 110×120 см · в разложенном виде 190 см · В 75 см",
+    "seats": 4,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол Фараон, круглый раздвижной 110→190 см, орех. Орех тёмный · 110×120 см · в разложенном виде 190 см · В 75 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/b003-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/b003-1.png"
+        ]
+      },
+      {
+        "color_name": "Натуральный дуб",
+        "color_hex": "#C19A6B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/b003-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол Фараон, круглый раздвижной 110→190 см, дуб",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 190000.0,
+    "old_price": null,
+    "dimensions": "Дуб натуральный · 110×120 см · в разложенном виде 190 см · В 75 см",
+    "seats": 4,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол Фараон, круглый раздвижной 110→190 см, дуб. Дуб натуральный · 110×120 см · в разложенном виде 190 см · В 75 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/b007-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Натуральный дуб",
+        "color_hex": "#C19A6B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/b007-1.png"
+        ]
+      },
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/b007-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол Джапанди, круглый раздвижной 110→200 см, дуб",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 130000.0,
+    "old_price": null,
+    "dimensions": "Дуб натуральный · Ø 110 см · в разложенном виде 200×110 см · В 75 см",
+    "seats": 4,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол Джапанди, круглый раздвижной 110→200 см, дуб. Дуб натуральный · Ø 110 см · в разложенном виде 200×110 см · В 75 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/51400-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Натуральный дуб",
+        "color_hex": "#C19A6B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/51400-1.png"
+        ]
+      },
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/51400-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол Monza, круглый раздвижной 100→180 см, орех",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 100000.0,
+    "old_price": null,
+    "dimensions": "Орех · Ø 100 см · в разложенном виде 180 см · В 76 см",
+    "seats": 4,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол Monza, круглый раздвижной 100→180 см, орех. Орех · Ø 100 см · в разложенном виде 180 см · В 76 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/monza-wal-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/monza-wal-1.png"
+        ]
+      },
+      {
+        "color_name": "Натуральный дуб",
+        "color_hex": "#C19A6B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/monza-wal-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол Экспресс, трансформер 160→360 см",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 400000.0,
+    "old_price": null,
+    "dimensions": "Тёмно-серый · 160 см · вставки: 210 · 260 · 310 · 360 см · Ш 100 · В 76 см",
+    "seats": 4,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол Экспресс, трансформер 160→360 см. Тёмно-серый · 160 см · вставки: 210 · 260 · 310 · 360 см · Ш 100 · В 76 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/b2547-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Серый меланж",
+        "color_hex": "#888888",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/b2547-1.png"
+        ]
+      },
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/b2547-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол Lagom, овальный раздвижной 140→240 см, орех",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 140000.0,
+    "old_price": null,
+    "dimensions": "Орех тёмный · 140×90 см · с одной вставкой 190×90 · с двумя 240×90 · В 75 см",
+    "seats": 4,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол Lagom, овальный раздвижной 140→240 см, орех. Орех тёмный · 140×90 см · с одной вставкой 190×90 · с двумя 240×90 · В 75 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/pl1008-wal-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1008-wal-1.png"
+        ]
+      },
+      {
+        "color_name": "Натуральный дуб",
+        "color_hex": "#C19A6B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1008-wal-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стол круглый раздвижной 120→200 см PL1048",
+    "category": "tables",
+    "category_label": "Столы",
+    "price": 148000.0,
+    "old_price": null,
+    "dimensions": "Ясень / чёрные ножки · Ø 120 см · в разложенном виде 160 и 200 см · В 75 см",
+    "seats": 4,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стол круглый раздвижной 120→200 см PL1048. Ясень / чёрные ножки · Ø 120 см · в разложенном виде 160 и 200 см · В 75 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/pl1048-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Светлый ясень",
+        "color_hex": "#D7C4A5",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1048-1.png"
+        ]
+      },
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/pl1048-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул из массива ореха 11107",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 16000.0,
+    "old_price": null,
+    "dimensions": "Молочный / орех · Д 53 · Ш 51 · В 81 см",
+    "seats": 1,
+    "badge": "150 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул из массива ореха 11107. Молочный / орех · Д 53 · Ш 51 · В 81 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/11107-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/11107-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/11107-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул Chill-Lattic, коричневые ножки",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 9000.0,
+    "old_price": null,
+    "dimensions": "Молочный / ножки коричневые · Д 44 · Ш 55 · В 88 см",
+    "seats": 1,
+    "badge": "120 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул Chill-Lattic, коричневые ножки. Молочный / ножки коричневые · Д 44 · Ш 55 · В 88 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/10101-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Шоколадно-коричневый",
+        "color_hex": "#4A3525",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/10101-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/10101-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул Chill-Lattic, чёрные ножки",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 9000.0,
+    "old_price": null,
+    "dimensions": "Молочный / ножки чёрные · Д 44 · Ш 55 · В 88 см",
+    "seats": 1,
+    "badge": "100 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул Chill-Lattic, чёрные ножки. Молочный / ножки чёрные · Д 44 · Ш 55 · В 88 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/10103-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Основной оттенок",
+        "color_hex": "#B8A48B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/10103-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/10103-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул Chill-Grey",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 9000.0,
+    "old_price": null,
+    "dimensions": "Серый · Д 44 · Ш 55 · В 88 см",
+    "seats": 1,
+    "badge": "99 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул Chill-Grey. Серый · Д 44 · Ш 55 · В 88 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/10222-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Серый меланж",
+        "color_hex": "#888888",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/10222-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/10222-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул с мягкой спинкой из массива ореха 2203",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 17000.0,
+    "old_price": null,
+    "dimensions": "Молочный / орех · 70 × 66 × 28 см",
+    "seats": 1,
+    "badge": "70 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул с мягкой спинкой из массива ореха 2203. Молочный / орех · 70 × 66 × 28 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/2203-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/2203-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/2203-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул из массива ясеня 11106",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 16000.0,
+    "old_price": null,
+    "dimensions": "Молочный / ясень · Д 53 · Ш 51 · В 81 см",
+    "seats": 1,
+    "badge": "60 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул из массива ясеня 11106. Молочный / ясень · Д 53 · Ш 51 · В 81 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/11106-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Светлый ясень",
+        "color_hex": "#D7C4A5",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/11106-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/11106-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул на А-образных ножках из массива ореха 2207",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 21000.0,
+    "old_price": null,
+    "dimensions": "Молочный / орех · 104 × 55 × 61 см",
+    "seats": 1,
+    "badge": "20 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул на А-образных ножках из массива ореха 2207. Молочный / орех · 104 × 55 × 61 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/2207-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/2207-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/2207-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул с фигурной спинкой из массива ореха 2205",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 22000.0,
+    "old_price": null,
+    "dimensions": "Молочный / орех · 83 × 53 × 86 см",
+    "seats": 1,
+    "badge": "20 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул с фигурной спинкой из массива ореха 2205. Молочный / орех · 83 × 53 × 86 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/2205-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/2205-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/2205-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул с изогнутой спинкой WD-S225.01",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 50000.0,
+    "old_price": null,
+    "dimensions": "Орех / серый · Д 52 · Ш 55 · В 77 см",
+    "seats": 1,
+    "badge": "4 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул с изогнутой спинкой WD-S225.01. Орех / серый · Д 52 · Ш 55 · В 77 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/wd-s225-01-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-s225-01-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-s225-01-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул ZenZone 10400, поворотный",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 15000.0,
+    "old_price": null,
+    "dimensions": "Тёмно-серый · Д 62 · Ш 55 · В 85 см",
+    "seats": 1,
+    "badge": "4 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул ZenZone 10400, поворотный. Тёмно-серый · Д 62 · Ш 55 · В 85 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/10400-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Серый меланж",
+        "color_hex": "#888888",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/10400-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/10400-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул с округлой мягкой спинкой WD-1977(V1)",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 50000.0,
+    "old_price": null,
+    "dimensions": "Орех / светло-серый · Д 60 · Ш 59 · В 77 см",
+    "seats": 1,
+    "badge": "2 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул с округлой мягкой спинкой WD-1977(V1). Орех / светло-серый · Д 60 · Ш 59 · В 77 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/wd-1977v1-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-1977v1-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-1977v1-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул в рогожке S005",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 16000.0,
+    "old_price": null,
+    "dimensions": "Серый · Д 44 · Ш 53 · В 87 см",
+    "seats": 1,
+    "badge": "2 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул в рогожке S005. Серый · Д 44 · Ш 53 · В 87 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/s005-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Серый меланж",
+        "color_hex": "#888888",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/s005-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/s005-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул из экокожи УЮТ 02",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 11000.0,
+    "old_price": null,
+    "dimensions": "Молочный / коричневый · Д 45 · Ш 54 · В 85 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул из экокожи УЮТ 02. Молочный / коричневый · Д 45 · Ш 54 · В 85 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/uut-02-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Шоколадно-коричневый",
+        "color_hex": "#4A3525",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/uut-02-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/uut-02-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул из массива S259 Walnut",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 38200.0,
+    "old_price": null,
+    "dimensions": "Орех · Д 48 · Ш 52 · В 78 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул из массива S259 Walnut. Орех · Д 48 · Ш 52 · В 78 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/s259-walnut-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/s259-walnut-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/s259-walnut-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул на А-образных ножках WD-S007(V)",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 58200.0,
+    "old_price": null,
+    "dimensions": "Орех · Д 50 · Ш 55 · В 78 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул на А-образных ножках WD-S007(V). Орех · Д 50 · Ш 55 · В 78 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/wd-s007v-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-s007v-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-s007v-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул на чёрном каркасе WD-S259",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 38000.0,
+    "old_price": null,
+    "dimensions": "Чёрный / серый · Д 48 · Ш 53 · В 80 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул на чёрном каркасе WD-S259. Чёрный / серый · Д 48 · Ш 53 · В 80 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/wd-s259-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Глубокий чёрный",
+        "color_hex": "#222222",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-s259-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-s259-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул из гнутой фанеры DC-S197A",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 35000.0,
+    "old_price": null,
+    "dimensions": "Серо-синий / шпон дуба · Д 50 · Ш 55 · В 80 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул из гнутой фанеры DC-S197A. Серо-синий / шпон дуба · Д 50 · Ш 55 · В 80 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/dc-s197a-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Натуральный дуб",
+        "color_hex": "#C19A6B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/dc-s197a-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/dc-s197a-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул из массива ореха WD-1833(V) Walnut",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 38200.0,
+    "old_price": null,
+    "dimensions": "Орех / светлая ткань · Д 47 · Ш 52 · В 80 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул из массива ореха WD-1833(V) Walnut. Орех / светлая ткань · Д 47 · Ш 52 · В 80 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/wd-1833v-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-1833v-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-1833v-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул штабелируемый, микс цветов",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 18000.0,
+    "old_price": null,
+    "dimensions": "Микс: беж / олива / оранж / графит · Д 46 · Ш 52 · В 78 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул штабелируемый, микс цветов. Микс: беж / олива / оранж / графит · Д 46 · Ш 52 · В 78 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/stk-18000-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Основной оттенок",
+        "color_hex": "#B8A48B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/stk-18000-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/stk-18000-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул из букле 11105",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 16000.0,
+    "old_price": null,
+    "dimensions": "Молочный · Д 44 · Ш 53 · В 87 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул из букле 11105. Молочный · Д 44 · Ш 53 · В 87 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/11105-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Кремовое букле",
+        "color_hex": "#EFEBD9",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/11105-1.png"
+        ]
+      },
+      {
+        "color_name": "Графит",
+        "color_hex": "#3D3D3D",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/11105-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул поворотный стёганый 10600",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 21000.0,
+    "old_price": null,
+    "dimensions": "Молочный · Д 62 · Ш 55 · В 85 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул поворотный стёганый 10600. Молочный · Д 62 · Ш 55 · В 85 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/10600-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Основной оттенок",
+        "color_hex": "#B8A48B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/10600-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/10600-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул на деревянных ножках 11103",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 16000.0,
+    "old_price": null,
+    "dimensions": "Молочный · Д 44 · Ш 53 · В 87 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул на деревянных ножках 11103. Молочный · Д 44 · Ш 53 · В 87 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/11103-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Основной оттенок",
+        "color_hex": "#B8A48B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/11103-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/11103-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул в рогожке S0010",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 16000.0,
+    "old_price": null,
+    "dimensions": "Светло-серый · Д 44 · Ш 53 · В 87 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул в рогожке S0010. Светло-серый · Д 44 · Ш 53 · В 87 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/s0010-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Серый меланж",
+        "color_hex": "#888888",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/s0010-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/s0010-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул с широкой спинкой WD-S225.02",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 50200.0,
+    "old_price": null,
+    "dimensions": "Орех / светло-серый · Д 54 · Ш 55 · В 77 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул с широкой спинкой WD-S225.02. Орех / светло-серый · Д 54 · Ш 55 · В 77 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/wd-s225-02-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-s225-02-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-s225-02-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул с гнутой спинкой WD-1821(V)",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 43700.0,
+    "old_price": null,
+    "dimensions": "Ясень / терракота · Д 55 · Ш 52 · В 76 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул с гнутой спинкой WD-1821(V). Ясень / терракота · Д 55 · Ш 52 · В 76 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/wd-1821v-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Светлый ясень",
+        "color_hex": "#D7C4A5",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-1821v-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-1821v-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул Chill-Blue",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 9000.0,
+    "old_price": null,
+    "dimensions": "Голубой · Д 44 · Ш 53 · В 87 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул Chill-Blue. Голубой · Д 44 · Ш 53 · В 87 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/10223-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Основной оттенок",
+        "color_hex": "#B8A48B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/10223-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/10223-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул Modular White 11102",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 15000.0,
+    "old_price": null,
+    "dimensions": "Белый · Д 44 · Ш 53 · В 87 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул Modular White 11102. Белый · Д 44 · Ш 53 · В 87 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/11102-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Белый мрамор",
+        "color_hex": "#F5F5F5",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/11102-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/11102-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Стул велюровый 10333",
+    "category": "chairs",
+    "category_label": "Стулья",
+    "price": 10000.0,
+    "old_price": null,
+    "dimensions": "Графитовый · Д 44 · Ш 53 · В 87 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Стул велюровый 10333. Графитовый · Д 44 · Ш 53 · В 87 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/10333-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Основной оттенок",
+        "color_hex": "#B8A48B",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/10333-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/10333-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Кресло с подлокотниками и деревянной спинкой 2206",
+    "category": "chairs",
+    "category_label": "Кресла",
+    "price": 28000.0,
+    "old_price": null,
+    "dimensions": "Орех / молочное сиденье · 77 × 72 × 64 см",
+    "seats": 1,
+    "badge": "20 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Кресло с подлокотниками и деревянной спинкой 2206. Орех / молочное сиденье · 77 × 72 × 64 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/2206-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/2206-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/2206-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Кресло из букле с подлокотниками 307",
+    "category": "chairs",
+    "category_label": "Кресла",
+    "price": 24000.0,
+    "old_price": null,
+    "dimensions": "Бежевый · Д 60 · Ш 58 · В 80 см",
+    "seats": 1,
+    "badge": "6 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Кресло из букле с подлокотниками 307. Бежевый · Д 60 · Ш 58 · В 80 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/307-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Кремовое букле",
+        "color_hex": "#EFEBD9",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/307-1.png"
+        ]
+      },
+      {
+        "color_name": "Графит",
+        "color_hex": "#3D3D3D",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/307-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Кресло с цельной гнутой спинкой WD-1856",
+    "category": "chairs",
+    "category_label": "Кресла",
+    "price": 55000.0,
+    "old_price": null,
+    "dimensions": "Орех / серый · Д 60 · Ш 65 · В 80 см",
+    "seats": 1,
+    "badge": "2 шт в наличии",
+    "availability": "В наличии на складе",
+    "description": "Кресло с цельной гнутой спинкой WD-1856. Орех / серый · Д 60 · Ш 65 · В 80 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/wd-1856-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-1856-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-1856-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Кресло из ротанга WD-1792(KD)",
+    "category": "chairs",
+    "category_label": "Кресла",
+    "price": 41600.0,
+    "old_price": null,
+    "dimensions": "Орех / ротанг · Д 56 · Ш 58 · В 84 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Кресло из ротанга WD-1792(KD). Орех / ротанг · Д 56 · Ш 58 · В 84 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/wd-1792kd-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-1792kd-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-1792kd-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Кресло из массива ореха WD-1841",
+    "category": "chairs",
+    "category_label": "Кресла",
+    "price": 35000.0,
+    "old_price": null,
+    "dimensions": "Орех / светлая ткань · Д 58 · Ш 62 · В 78 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Кресло из массива ореха WD-1841. Орех / светлая ткань · Д 58 · Ш 62 · В 78 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/wd-1841-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-1841-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-1841-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Кресло поворотное 209",
+    "category": "chairs",
+    "category_label": "Кресла",
+    "price": 20000.0,
+    "old_price": null,
+    "dimensions": "Тёмно-коричневый · Д 66 · Ш 62 · В 82 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Кресло поворотное 209. Тёмно-коричневый · Д 66 · Ш 62 · В 82 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/209-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Шоколадно-коричневый",
+        "color_hex": "#4A3525",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/209-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/209-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Кресло поворотное с кантом 210",
+    "category": "chairs",
+    "category_label": "Кресла",
+    "price": 20000.0,
+    "old_price": null,
+    "dimensions": "Серый · Д 66 · Ш 62 · В 82 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Кресло поворотное с кантом 210. Серый · Д 66 · Ш 62 · В 82 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/210-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Серый меланж",
+        "color_hex": "#888888",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/210-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/210-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Кресло с плетёным сиденьем WD-1439C",
+    "category": "chairs",
+    "category_label": "Кресла",
+    "price": 42000.0,
+    "old_price": null,
+    "dimensions": "Орех · Д 56 · Ш 52 · В 74 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Кресло с плетёным сиденьем WD-1439C. Орех · Д 56 · Ш 52 · В 74 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/wd-1439c-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-1439c-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-1439c-1.png"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Кресло с подлокотниками WD-S163(V)",
+    "category": "chairs",
+    "category_label": "Кресла",
+    "price": 48200.0,
+    "old_price": null,
+    "dimensions": "Орех / серый · Д 55 · Ш 55 · В 78 см",
+    "seats": 1,
+    "badge": "В наличии",
+    "availability": "В наличии на складе",
+    "description": "Кресло с подлокотниками WD-S163(V). Орех / серый · Д 55 · Ш 55 · В 78 см. Высокое качество фабричного производства, надежные материалы и современный дизайн.",
+    "images": [
+      "https://paradise-mebel.vercel.app/uploads/wd-s163v-1.png"
+    ],
+    "variants": [
+      {
+        "color_name": "Орех тёмный",
+        "color_hex": "#5C4033",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-s163v-1.png"
+        ]
+      },
+      {
+        "color_name": "Кремовый",
+        "color_hex": "#EFEBE4",
+        "price_override": null,
+        "images": [
+          "https://paradise-mebel.vercel.app/uploads/wd-s163v-1.png"
+        ]
+      }
+    ]
+  }
+];
