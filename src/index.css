@@ -176,6 +176,12 @@ button, summary { cursor: pointer; }
 .detail-price > span { padding: 3px 7px; border-radius: 5px; color: white; background: var(--danger); font-size: 10px; font-weight: 800; }
 .availability { display: flex; align-items: center; gap: 7px; color: var(--green); font-size: 11px; font-weight: 800; }
 .availability i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px rgba(22,121,75,.12); }
+.variant-prices { margin-top: 20px; padding: 15px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+.variant-prices h3 { margin: 0 0 10px; font-size: 12px; }
+.variant-prices > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+.variant-prices span { min-width: 0; padding: 9px 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; border-radius: 8px; background: white; font-size: 10px; }
+.variant-prices b { color: var(--muted); }
+.variant-prices strong { white-space: nowrap; }
 .choice-block { margin-top: 23px; padding-top: 19px; border-top: 1px solid var(--soft); }
 .choice-label { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .choice-label > span { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 800; }
@@ -420,6 +426,7 @@ button, summary { cursor: pointer; }
   .gallery-thumbs button { height: 60px; }
   .detail-topline { flex-direction: column; padding-right: 45px; }
   .spec-grid { grid-template-columns: 1fr; }
+  .variant-prices > div { grid-template-columns: 1fr; }
   .spec-grid div:nth-child(odd) { border-right: 0; }
   .spec-grid div:nth-last-child(2) { border-bottom: 1px solid var(--line); }
   .modal-actions { position: sticky; bottom: 0; z-index: 2; margin-inline: -22px; padding: 12px 22px; background: rgba(255,255,255,.94); backdrop-filter: blur(12px); }

@@ -22,6 +22,27 @@ test('catalog has unique, complete products and existing media', async () => {
   }
 });
 
+test('catalog contains Bolatbek products, size prices, and no tables or chairs', () => {
+  assert.deepEqual(
+    PRODUCTS_DATA.slice(0, 9).map((product) => product.name),
+    ['Oscar', 'Terra', 'Orda', 'Loft', 'Milan', 'Ankara', 'Istanbul', 'Skandi', 'Prestige']
+  );
+  assert.equal(getProduct('oscar').sizeVariants.find((variant) => variant.size === '2,5 м').price, 280000);
+  assert.equal(getProduct('beds').sizeVariants.find((variant) => variant.size === '140×200 см').price, 210000);
+  assert.equal(getProduct('mattresses').sizeVariants.find((variant) => variant.size === '140×200 см').price, 85000);
+  assert.equal(PRODUCTS_DATA.some((product) => /стол|стул/i.test(`${product.name} ${product.categoryLabel}`)), false);
+});
+
+test('each color circle points to a real product photo', async () => {
+  for (const product of PRODUCTS_DATA) {
+    assert.equal(product.variants.length, product.colors.length);
+    for (const variant of product.variants) {
+      assert.ok(variant.color_name && variant.color_hex && variant.images.length > 0);
+      await Promise.all(variant.images.map((image) => access(`public${image.url}`)));
+    }
+  }
+});
+
 test('fabric previews are optimized and available', async () => {
   assert.ok(FABRIC_COLLECTIONS.length >= 4);
   await Promise.all(FABRIC_COLLECTIONS.map((fabric) => access(`public${fabric.image}`)));

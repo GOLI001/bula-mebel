@@ -19,6 +19,8 @@ export default function ProductCard({ product, onOpen }) {
   const activePrice = (activeVariant && activeVariant.price_override) 
     ? activeVariant.price_override 
     : product.price;
+  const colorCount = product.colors?.length || 0;
+  const colorSummary = colorCount === 1 ? '1 вариант' : `${colorCount} ${colorCount < 5 ? 'цвета' : 'цветов'} на фото`;
 
   return (
     <article className="product-card">
@@ -81,7 +83,7 @@ export default function ProductCard({ product, onOpen }) {
             </>
           )}
           <span style={{ fontSize: '0.85rem', color: '#666', marginLeft: '4px' }}>
-            {activeVariant ? activeVariant.color_name : '+47 тканей'}
+            {activeVariant ? activeVariant.color_name : colorSummary}
           </span>
         </div>
 

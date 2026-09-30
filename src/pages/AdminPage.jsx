@@ -10,12 +10,9 @@ import { useCatalog } from '../context/CatalogContext';
 import { formatMoney } from '../data/products';
 
 const CATEGORIES = [
-  { id: 'straight', label: 'Прямой диван' },
-  { id: 'corner', label: 'Угловой диван' },
-  { id: 'modular', label: 'Модульный диван' },
-  { id: 'designer', label: 'Дизайнерский диван' },
-  { id: 'tables', label: 'Стол' },
-  { id: 'chairs', label: 'Стул / Кресло' },
+  { id: 'sofas', label: 'Диван' },
+  { id: 'beds', label: 'Кровать' },
+  { id: 'mattresses', label: 'Матрас' },
 ];
 
 const POPULAR_COLORS = [
@@ -47,8 +44,8 @@ export default function AdminPage() {
   // Form State
   const [formData, setFormData] = useState({
     name: '',
-    category: 'straight',
-    category_label: 'Прямой диван',
+    category: 'sofas',
+    category_label: 'Диван',
     price: 250000,
     old_price: 280000,
     dimensions: '220 × 95 × 85 см',
@@ -153,8 +150,8 @@ export default function AdminPage() {
     setEditingProduct(null);
     setFormData({
       name: '',
-      category: 'straight',
-      category_label: 'Прямой диван',
+      category: 'sofas',
+      category_label: 'Диван',
       price: 250000,
       old_price: '',
       dimensions: '220 × 95 × 85 см',
@@ -211,7 +208,7 @@ export default function AdminPage() {
     setFormData({
       name: product.name,
       category: product.category,
-      category_label: product.categoryLabel || 'Прямой диван',
+      category_label: product.categoryLabel || 'Диван',
       price: product.price || 0,
       old_price: product.oldPrice || '',
       dimensions: product.dimensions || '',

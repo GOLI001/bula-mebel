@@ -30,6 +30,7 @@ function normalizeProduct(raw) {
     description: raw.description || '',
     video: raw.video || null,
     variants: raw.variants || [],
+    sizeVariants: raw.sizeVariants || [],
     colors: colors,
     images: images,
     materials: Array.isArray(raw.materials) ? raw.materials : (raw.materials ? [raw.materials] : ['Ткань на выбор', 'Деревянный мебельный каркас']),
@@ -47,7 +48,12 @@ export function CatalogProvider({ children }) {
       setIsCatalogLoading(true);
       const res = await axios.get('/api/catalog/products/');
       if (Array.isArray(res.data) && res.data.length > 0) {
-        setProducts(res.data.map(normalizeProduct));
+        const visible = res.data
+          .map(normalizeProduct)
+          .filter((product) => !['tables', 'chairs'].includes(product.category));
+        const requiredModels = ['Oscar', 'Terra', 'Orda', 'Loft', 'Milan', 'Ankara', 'Istanbul', 'Skandi', 'Prestige'];
+        const hasCompleteCatalog = requiredModels.every((name) => visible.some((product) => product.name === name));
+        setProducts(hasCompleteCatalog ? visible : PRODUCTS_DATA);
       } else {
         setProducts(PRODUCTS_DATA);
       }

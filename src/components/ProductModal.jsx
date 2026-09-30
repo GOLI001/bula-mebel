@@ -69,10 +69,9 @@ export default function ProductModal({ product, onClose, initialVariant = null }
     ? media.customUrl 
     : (product.images[media.index] || '/media/products/orda-1.webp');
 
-  const isSofa = !['tables', 'chairs'].includes(product.category) && !product.name.toLowerCase().startsWith('диван');
-  const displayName = isSofa ? `Диван ${product.name}` : product.name;
+  const displayName = product.category === 'sofas' ? `Диван ${product.name}` : product.name;
 
-  const whatsapp = `https://wa.me/77475560315?text=${encodeURIComponent(`Здравствуйте! Интересует ${displayName}. Цвет: ${selectedColor}${product.category !== 'tables' ? `, ткань: ${selectedFabric}` : ''}. Подскажите по наличию и срокам.`)}`;
+  const whatsapp = `https://wa.me/77475560315?text=${encodeURIComponent(`Здравствуйте! Интересует ${displayName}. Цвет: ${selectedColor}, ткань: ${selectedFabric}. Подскажите по размеру и срокам.`)}`;
 
   return (
     <div className="modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
@@ -123,13 +122,13 @@ export default function ProductModal({ product, onClose, initialVariant = null }
             )}
           </div>
           <div className="availability"><i /> {product.availability}</div>
+          {product.sizeVariants?.length > 0 && <div className="variant-prices" aria-label="Размеры и цены">
+            <h3>Размеры и цены</h3>
+            <div>{product.sizeVariants.map((variant) => <span key={variant.size}><b>{variant.size}</b><strong>{formatMoney(variant.price)} ₸</strong></span>)}</div>
+          </div>}
           <div className="choice-block">
-            {product.category !== 'tables' && (
-              <>
-                <div className="choice-label"><span><Palette size={18} /> Коллекция ткани</span><a href={whatsapp} target="_blank" rel="noreferrer">Помочь выбрать</a></div>
-                <div className="fabric-options">{FABRIC_COLLECTIONS.map((fabric) => <button key={fabric.id} type="button" className={selectedFabric === fabric.name ? 'selected' : ''} aria-pressed={selectedFabric === fabric.name} onClick={() => setSelectedFabric(fabric.name)}><img src={fabric.image} alt="" /><span><strong>{fabric.name}</strong><small>{fabric.type}</small></span></button>)}</div>
-              </>
-            )}
+            <div className="choice-label"><span><Palette size={18} /> Коллекция ткани</span><a href={whatsapp} target="_blank" rel="noreferrer">Помочь выбрать</a></div>
+            <div className="fabric-options">{FABRIC_COLLECTIONS.map((fabric) => <button key={fabric.id} type="button" className={selectedFabric === fabric.name ? 'selected' : ''} aria-pressed={selectedFabric === fabric.name} onClick={() => setSelectedFabric(fabric.name)}><img src={fabric.image} alt="" /><span><strong>{fabric.name}</strong><small>{fabric.type}</small></span></button>)}</div>
             <div className="choice-label color-label"><span>Предпочтительный цвет</span></div>
             <div className="choice-chips">
               {variants ? (
@@ -162,11 +161,11 @@ export default function ProductModal({ product, onClose, initialVariant = null }
             </div>
           </div>
           <dl className="spec-grid">
-            <div><dt>Габариты</dt><dd>{product.dimensions}</dd></div>
+            <div><dt>Размеры</dt><dd>{product.dimensions}</dd></div>
             {product.sleepingArea && product.sleepingArea !== 'Не предусмотрено' && (
               <div><dt>Спальное место</dt><dd>{product.sleepingArea}</dd></div>
             )}
-            <div><dt>{product.category === 'tables' ? 'Вместимость' : 'Посадочных мест'}</dt><dd>{product.seats}</dd></div>
+            {product.seats > 0 && <div><dt>Посадочных мест</dt><dd>{product.seats}</dd></div>}
             <div><dt>Производство</dt><dd>Астана, Казахстан</dd></div>
           </dl>
           <div className="feature-list">{product.features.map((feature) => <span key={feature}><Check size={17} /> {feature}</span>)}</div>

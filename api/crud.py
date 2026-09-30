@@ -1,7 +1,6 @@
 from sqlalchemy.orm import Session
 from api import models, schemas
 from api.auth import get_password_hash
-import json
 
 def get_product(db: Session, product_id: int):
     return db.query(models.Product).filter(models.Product.id == product_id).first()
@@ -277,24 +276,4 @@ def seed_default_data_if_empty(db: Session):
 
         for s in initial_sofas:
             create_product(db, schemas.ProductCreate(**s))
-
-    # Also seed parsed tables and chairs from paradise-mebel if they don't exist yet
-    has_tables_or_chairs = db.query(models.Product).filter(models.Product.category.in_(["tables", "chairs"])).first()
-    if not has_tables_or_chairs:
-        json_paths = [
-            os.path.join(os.path.dirname(__file__), "parsed_paradise_products.json"),
-            os.path.join(os.path.dirname(__file__), "..", "parsed_paradise_products.json"),
-            "parsed_paradise_products.json",
-        ]
-        for p in json_paths:
-            if os.path.exists(p):
-                try:
-                    with open(p, "r", encoding="utf-8") as f:
-                        items = json.load(f)
-                    for item in items:
-                        item_data = {k: v for k, v in item.items() if k != "images"}
-                        create_product(db, schemas.ProductCreate(**item_data))
-                    break
-                except Exception as e:
-                    print(f"Error seeding paradise products: {e}")
 

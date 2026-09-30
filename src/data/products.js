@@ -1,137 +1,172 @@
-const FEATURED_PRODUCTS = [
+const imageUrl = (folder, index) => `/media/catalog/${folder}/${String(index).padStart(2, '0')}.webp`;
+const makeImages = (folder, count) => Array.from({ length: count }, (_, index) => imageUrl(folder, index + 1));
+
+const makeColorVariants = (folder, definitions) => definitions.map(([colorName, colorHex, indexes], variantIndex) => ({
+  id: `${folder}-${variantIndex + 1}`,
+  color_name: colorName,
+  color_hex: colorHex,
+  price_override: null,
+  images: indexes.map((index) => ({
+    id: `${folder}-${variantIndex + 1}-${index}`,
+    url: imageUrl(folder, index),
+    alt_text: `${colorName}, фото ${index}`,
+  })),
+}));
+
+const withMedia = (folder, imageCount, colorDefinitions) => ({
+  images: makeImages(folder, imageCount),
+  variants: makeColorVariants(folder, colorDefinitions),
+  colors: colorDefinitions.map(([name]) => name),
+});
+
+const commonSofa = {
+  category: 'sofas', categoryLabel: 'Диван', sleepingArea: 'Уточните у менеджера', seats: 3,
+  availability: 'Изготовление под заказ', oldPrice: null, video: null,
+  materials: ['Мебельная ткань на выбор', 'Прочный мебельный каркас', 'Комфортный эластичный наполнитель'],
+  features: ['Изготовление в Астане', 'Выбор ткани и цвета', 'Несколько вариантов размера'],
+};
+
+const sofa = ({ folder, imageCount, sizeVariants = [], colorVariants, description, ...product }) => ({
+  ...commonSofa,
+  ...product,
+  ...withMedia(folder, imageCount, colorVariants),
+  price: sizeVariants.length ? Math.min(...sizeVariants.map((variant) => variant.price)) : null,
+  dimensions: sizeVariants.length ? sizeVariants.map((variant) => variant.size).join(' / ') : 'Уточняется',
+  sizeVariants,
+  description: description || `Модель ${product.name} из каталога Divan Bula. На фотографиях показаны реальные варианты исполнения, переданные производителем. Размер, цвет и ткань согласовываются при заказе.`,
+});
+
+export const PRODUCTS_DATA = [
+  sofa({
+    id: 'oscar', name: 'Oscar', folder: 'oscar', imageCount: 10, badge: '3 цвета на фото',
+    sizeVariants: [{ size: '2,5 м', price: 280000 }, { size: '3 м', price: 330000 }],
+    colorVariants: [
+      ['Молочный / кремовый', '#EDE7DA', [1, 2, 3, 6, 7, 10]],
+      ['Светло-серый', '#C6C5C0', [5, 9]],
+      ['Синий', '#315A72', [4, 8]],
+    ],
+  }),
+  sofa({
+    id: 'terra', name: 'Terra', folder: 'terra', imageCount: 6, badge: '5 цветов на фото',
+    sizeVariants: [{ size: '2,10 м', price: 240000 }],
+    colorVariants: [
+      ['Молочный / кремовый', '#EDE7DA', [1, 6]], ['Светло-серый', '#C6C5C0', [3]],
+      ['Зелёный', '#5F785B', [4]], ['Оливковый / хаки', '#697257', [5]],
+      ['Терракотовый', '#A9583E', [2]],
+    ],
+  }),
+  sofa({
+    id: 'orda', name: 'Orda', folder: 'orda', imageCount: 9, badge: '4 цвета на фото',
+    sizeVariants: [{ size: '2,60 м', price: 280000 }, { size: '3 м', price: 330000 }],
+    colorVariants: [
+      ['Молочный / кремовый', '#EDE7DA', [2, 3, 4, 5, 7, 9]], ['Бежевый', '#C8B39B', [6]],
+      ['Серый', '#7E8082', [8]], ['Светло-зелёный', '#AEBE98', [1]],
+    ],
+  }),
+  sofa({
+    id: 'loft', name: 'Loft', folder: 'loft', imageCount: 26, badge: '6 цветов на фото',
+    sizeVariants: [{ size: '2 м', price: 220000 }, { size: '2,5 м', price: 260000 }, { size: '3 м', price: 330000 }],
+    colorVariants: [
+      ['Молочный / кремовый', '#EDE7DA', [1, 2, 6, 7, 8, 15, 21, 24, 25]],
+      ['Бежевый', '#C8B39B', [3, 17, 18]], ['Светло-серый', '#C6C5C0', [4, 5, 13, 16, 20, 23, 26]],
+      ['Серый', '#7E8082', [9, 10, 11, 12]], ['Терракотовый', '#A9583E', [14, 22]],
+      ['Коричневый', '#8B6547', [19]],
+    ],
+  }),
+  sofa({
+    id: 'milan', name: 'Milan', folder: 'milan', imageCount: 21, badge: '7 цветов на фото',
+    sizeVariants: [{ size: '2 м', price: 210000 }, { size: '2,5 м', price: 250000 }, { size: '3 м', price: 280000 }],
+    colorVariants: [
+      ['Молочный / кремовый', '#EDE7DA', [2, 3, 4, 18, 19, 20]], ['Бежевый', '#C8B39B', [8, 10, 12, 13, 16]],
+      ['Светло-серый', '#C6C5C0', [1, 5, 6, 15, 17]], ['Тёмно-серый', '#44484B', [7, 9]],
+      ['Серо-бежевый', '#A99C8B', [21]], ['Зелёный', '#5F785B', [11]], ['Тёмно-зелёный', '#22483B', [14]],
+    ],
+  }),
+  sofa({
+    id: 'ankara', name: 'Ankara', folder: 'ankara', imageCount: 17, badge: '3 цвета на фото',
+    sizeVariants: [{ size: '2 м', price: 260000 }, { size: '2,5 м', price: 300000 }, { size: '3 м', price: 350000 }],
+    colorVariants: [
+      ['Молочный / кремовый', '#EDE7DA', [1, 2, 3, 4, 7, 9, 10, 11, 12, 13, 15]],
+      ['Бежевый', '#C8B39B', [6, 8]], ['Светло-серый', '#C6C5C0', [5, 14, 16, 17]],
+    ],
+  }),
+  sofa({
+    id: 'istanbul', name: 'Istanbul', folder: 'istanbul', imageCount: 4, badge: '4 цвета на фото',
+    sizeVariants: [{ size: '2,20 м', price: 260000 }, { size: '2,5 м', price: 300000 }, { size: '3 м', price: 350000 }],
+    colorVariants: [
+      ['Молочный / кремовый', '#EDE7DA', [1]], ['Бежевый', '#C8B39B', [3]],
+      ['Серо-бежевый', '#A99C8B', [4]], ['Зелёный', '#5F785B', [2]],
+    ],
+  }),
+  sofa({
+    id: 'skandi', name: 'Skandi', folder: 'skandi', imageCount: 14, badge: '7 цветов на фото',
+    sizeVariants: [{ size: '2 м', price: 200000 }, { size: '2,5 м', price: 240000 }, { size: '3 м', price: 280000 }],
+    colorVariants: [
+      ['Молочный / кремовый', '#EDE7DA', [6, 7, 8, 9, 11]], ['Бежевый', '#C8B39B', [1]],
+      ['Светло-серый', '#C6C5C0', [5, 13]], ['Синий', '#315A72', [3]],
+      ['Терракотовый', '#A9583E', [2]], ['Бордовый', '#7A3138', [4]],
+      ['Горчичный', '#C49A3B', [10, 12, 14]],
+    ],
+  }),
+  sofa({
+    id: 'prestige', name: 'Prestige', folder: 'prestige', imageCount: 12, badge: '8 цветов на фото',
+    sizeVariants: [{ size: '2 м', price: 220000 }, { size: '2,5 м', price: 250000 }, { size: '3 м', price: 280000 }],
+    colorVariants: [
+      ['Молочный / кремовый', '#EDE7DA', [10, 12]], ['Бежевый', '#C8B39B', [7]],
+      ['Светло-серый', '#C6C5C0', [8]], ['Тёмно-серый', '#44484B', [2, 5, 6]],
+      ['Тёмно-зелёный', '#22483B', [11]], ['Оливковый / хаки', '#697257', [3, 4]],
+      ['Синий', '#315A72', [1]], ['Терракотовый', '#A9583E', [9]],
+    ],
+  }),
   {
-    id: 'orda-260', name: 'Orda', category: 'corner', categoryLabel: 'Угловой диван',
-    price: 310000, oldPrice: 345000, dimensions: '260 × 165 × 82 см', sleepingArea: '200 × 145 см', seats: 4,
-    availability: 'Под заказ · от 14 дней', badge: 'Хит продаж', rating: 4.9, reviewCount: 18,
-    images: ['/media/products/orda-1.webp', '/media/products/orda-2.webp', '/media/products/orda-3.webp'],
-    video: '/media/video/orda.mp4', colors: ['Молочный', 'Светло-серый', 'Графит'],
-    materials: ['Износостойкий велюр', 'Каркас из бруса и фанеры', 'Высокоэластичный ППУ'],
-    features: ['Глубокая комфортная посадка', 'Практичные съёмные подушки', 'Возможность выбора ткани и угла'],
-    description: 'Просторная модель для семейной гостиной. Лаконичный силуэт, мягкая посадка и удобная угловая секция делают Orda центром зоны отдыха.'
+    id: 'beds', name: 'Кровать с подъёмным механизмом', category: 'beds', categoryLabel: 'Кровать',
+    price: 175000, oldPrice: null, dimensions: '90×200 — 200×200 см', sleepingArea: 'По выбранному размеру', seats: 0,
+    availability: 'Изготовление под заказ', badge: '6 размеров', video: null,
+    ...withMedia('beds', 19, [
+      ['Молочный / кремовый', '#EDE7DA', [7, 9, 11, 12, 14, 15, 16, 19]], ['Бежевый', '#C8B39B', [10]],
+      ['Светло-серый', '#C6C5C0', [2, 4, 5, 6]], ['Серый', '#7E8082', [13, 18]],
+      ['Тёмно-серый', '#44484B', [1]], ['Синий', '#315A72', [3]], ['Терракотовый', '#A9583E', [17]],
+    ]),
+    sizeVariants: [
+      { size: '90×200 см', price: 175000 }, { size: '120×200 см', price: 190000 },
+      { size: '140×200 см', price: 210000 }, { size: '160×200 см', price: 230000 },
+      { size: '180×200 см', price: 260000 }, { size: '200×200 см', price: 280000 },
+    ],
+    materials: ['Мебельная ткань на выбор', 'Прочное основание', 'Подъёмный механизм'],
+    features: ['Вместительный короб для хранения', 'Шесть размеров спального места', 'Выбор цвета и ткани'],
+    description: 'Мягкая кровать с подъёмным механизмом и коробом для хранения. В каталоге представлены реальные фотографии изготовленных кроватей.',
   },
   {
-    id: 'terra-210', name: 'Terra', category: 'straight', categoryLabel: 'Прямой диван',
-    price: 245000, oldPrice: 275000, dimensions: '210 × 95 × 84 см', sleepingArea: 'Не предусмотрено', seats: 3,
-    availability: 'Под заказ · от 12 дней', badge: 'Компактный', rating: 4.8, reviewCount: 12,
-    images: ['/media/products/terra-1.webp', '/media/products/terra-2.webp', '/media/products/terra-3.webp'],
-    video: '/media/video/terra.mp4', colors: ['Молочный', 'Бежевый', 'Серый'],
-    materials: ['Мебельная рогожка', 'Берёзовая фанера', 'ППУ повышенной плотности'],
-    features: ['Подходит для небольшой гостиной', 'Высокие опоры облегчают уборку', 'Более 50 вариантов обивки'],
-    description: 'Лёгкий и аккуратный диван для современного интерьера. Terra сохраняет полноценную трёхместную посадку при компактной ширине 210 см.'
+    id: 'mattresses', name: 'Матрас', category: 'mattresses', categoryLabel: 'Матрас',
+    price: 55000, oldPrice: null, dimensions: '90×200 — 200×200 см', sleepingArea: 'По выбранному размеру', seats: 0,
+    availability: 'Размер уточняется при заказе', badge: '6 размеров', video: null,
+    ...withMedia('mattresses', 1, [['Стандартное исполнение', '#D9D9D9', [1]]]),
+    sizeVariants: [
+      { size: '90×200 см', price: 55000 }, { size: '120×200 см', price: 75000 },
+      { size: '140×200 см', price: 85000 }, { size: '160×200 см', price: 90000 },
+      { size: '180×200 см', price: 110000 }, { size: '200×200 см', price: 125000 },
+    ],
+    materials: ['Независимый пружинный блок', 'Комфортные настилочные слои', 'Износостойкий чехол'],
+    features: ['Шесть стандартных размеров', 'Подходит к кроватям каталога', 'Состав показан на схеме'],
+    description: 'Матрас в стандартных размерах. На схеме показано внутреннее наполнение; точную жёсткость и наличие уточнит менеджер.',
   },
-  {
-    id: 'loft-300', name: 'Loft', category: 'modular', categoryLabel: 'Модульный диван',
-    price: 420000, oldPrice: 468000, dimensions: '300 × 175 × 80 см', sleepingArea: '240 × 150 см', seats: 5,
-    availability: 'Под заказ · от 18 дней', badge: 'Выбор дизайнеров', rating: 5, reviewCount: 9,
-    images: ['/media/products/loft-1.webp', '/media/products/loft-2.webp', '/media/products/loft-3.webp'],
-    video: '/media/video/loft.mp4', colors: ['Светло-серый', 'Кремовый', 'Тёмно-серый'],
-    materials: ['Плотная мебельная ткань', 'Усиленный деревянный каркас', 'Комбинированный настил'],
-    features: ['Модульная конфигурация', 'Широкие подлокотники', 'Большое спальное место'],
-    description: 'Масштабная модульная модель с расслабленной посадкой. Конфигурацию Loft можно адаптировать под планировку вашей комнаты.'
-  },
-  {
-    id: 'oscar-300', name: 'Oscar', category: 'designer', categoryLabel: 'Дизайнерский диван',
-    price: 465000, oldPrice: 510000, dimensions: '300 × 120 × 76 см', sleepingArea: 'Не предусмотрено', seats: 5,
-    availability: 'Под заказ · от 20 дней', badge: 'Новинка', rating: 4.9, reviewCount: 7,
-    images: ['/media/products/oscar-1.webp', '/media/products/oscar-2.webp', '/media/products/oscar-3.webp'],
-    video: '/media/video/oscar.mp4', colors: ['Молочный букле', 'Карамельный', 'Песочный'],
-    materials: ['Мягкий велюр или букле', 'Фанера и хвойный брус', 'Эластичный формованный ППУ'],
-    features: ['Выразительная округлая форма', 'Панорамная посадка', 'Декоративные подушки в комплекте'],
-    description: 'Акцентная модель с плавной архитектурной формой. Oscar одинаково эффектно смотрится у стены и в центре просторной гостиной.'
-  }
+  sofa({
+    id: 'voice-model', name: 'Название уточняется', folder: 'voice-model', imageCount: 4, badge: '4 реальных фото',
+    colorVariants: [['Молочный / кремовый', '#EDE7DA', [1, 2, 3, 4]]], seats: 0,
+    description: 'Название и стоимость этой модели были переданы голосовым сообщением и не отображаются на скриншотах. Фотографии сохранены без вымышленного названия.',
+  }),
 ];
 
-const PHOTO_PRODUCTS = [
-  ['aru', 'Ару', 'corner', 'Угловой диван', 'aru.webp', 'Для небольшой гостиной', 4],
-  ['monaco', 'Монако', 'corner', 'Угловой диван', 'monaco.webp', 'Глубокая посадка', 4],
-  ['palma', 'Пальма', 'corner', 'Угловой диван', 'palma.webp', 'Плавные формы', 4],
-  ['milan', 'Милан', 'straight', 'Прямой диван', 'milan.webp', 'Лаконичный дизайн', 3],
-  ['duo', 'Дуо', 'straight', 'Компактный диван', 'duo.webp', 'Для двоих', 2],
-  ['luna', 'Луна', 'straight', 'Прямой диван', 'luna.webp', 'Мягкая посадка', 3],
-  ['retro', 'Ретро', 'straight', 'Прямой диван', 'retro.webp', 'Яркий акцент', 3],
-  ['grand', 'Гранд', 'corner', 'Угловой диван', 'grand.webp', 'Просторная модель', 5],
-  ['line', 'Лайн', 'straight', 'Прямой диван', 'line.webp', 'Современная классика', 3],
-  ['comfort', 'Комфорт', 'straight', 'Диван-кровать', 'comfort.webp', 'Практичный выбор', 3],
-  ['miami', 'Майами', 'modular', 'Модульный диван', 'miami.webp', 'Выразительный цвет', 5],
-  ['nordic', 'Нордик', 'corner', 'Угловой диван', 'nordic.webp', 'Минимализм', 4],
-  ['sunny', 'Санни', 'straight', 'Прямой диван', 'sunny.webp', 'Новая модель', 3],
-  ['urban', 'Урбан', 'corner', 'Угловой диван', 'urban.webp', 'Для всей семьи', 4],
-  ['blue', 'Блю', 'corner', 'Угловой диван', 'blue.webp', 'Глубокий цвет', 4],
-  ['cloud', 'Клауд', 'designer', 'Дизайнерский диван', 'cloud.webp', 'Воздушная форма', 4],
-  ['family', 'Фэмили', 'corner', 'Угловой диван', 'family.webp', 'С пуфом', 5],
-  ['vision', 'Вижн', 'corner', 'Угловой диван', 'vision.webp', 'Много места', 5],
-  ['air', 'Эйр', 'corner', 'Угловой диван', 'air.webp', 'Светлый интерьер', 4],
-  ['studio', 'Студио', 'straight', 'Комплект мягкой мебели', 'studio.webp', 'Диван и кресло', 5]
-].map(([id, name, category, categoryLabel, image, badge, seats]) => ({
-  id, name, category, categoryLabel, badge, seats,
-  price: null, oldPrice: null,
-  dimensions: 'Изготавливается под ваш размер',
-  sleepingArea: 'Уточните у менеджера',
-  availability: 'Под заказ · срок уточняется',
-  images: [`/media/products/collection/${image}`],
-  video: null,
-  colors: ['Молочный', 'Бежевый', 'Серый'],
-  materials: ['Ткань на выбор из каталога', 'Деревянный мебельный каркас', 'Комфортный эластичный наполнитель'],
-  features: ['Изготовление в Астане', 'Выбор ткани и цвета', 'Адаптация размера под интерьер'],
-  description: `${categoryLabel} ${name} из реализованной коллекции Divan Bula. Точную конфигурацию, размер, ткань и стоимость согласуем индивидуально.`
-}));
-
-import { PARADISE_RAW_PRODUCTS } from './paradiseProductsData.js';
-
-const PARADISE_PRODUCTS = PARADISE_RAW_PRODUCTS.map((item, idx) => ({
-  id: `paradise-${idx + 1}`,
-  name: item.name,
-  category: item.category,
-  categoryLabel: item.category_label,
-  price: item.price,
-  oldPrice: item.old_price,
-  dimensions: item.dimensions || 'Стандартные габариты',
-  sleepingArea: 'Не предусмотрено',
-  seats: item.seats || (item.category === 'tables' ? 4 : 1),
-  availability: item.availability || 'В наличии на складе',
-  badge: item.badge || 'В наличии',
-  rating: 4.9,
-  reviewCount: 4 + (idx % 8),
-  images: item.variants && item.variants[0]?.images?.length ? item.variants[0].images : ['https://paradise-mebel.vercel.app/uploads/51700-1.png'],
-  video: null,
-  colors: item.variants ? item.variants.map(v => v.color_name) : ['Орех тёмный'],
-  variants: item.variants ? item.variants.map((v, vIdx) => ({
-    id: (idx + 1) * 100 + vIdx + 1,
-    color_name: v.color_name,
-    color_hex: v.color_hex || '#CCCCCC',
-    price_override: v.price_override,
-    images: (v.images || []).map((imgUrl, iIdx) => ({
-      id: (idx + 1) * 1000 + vIdx * 10 + iIdx + 1,
-      url: imgUrl,
-      alt_text: v.color_name
-    }))
-  })) : [],
-  materials: item.category === 'tables' 
-    ? ['Массив дерева / МДФ', 'Износостойкое покрытие', 'Усиленная фурнитура']
-    : ['Эргономичный каркас', 'Качественная обивка', 'Надежные опоры'],
-  features: item.category === 'tables'
-    ? ['Раздвижной механизм', 'Устойчивая конструкция', 'Современный дизайн']
-    : ['Мягкая удобная посадка', 'Прочные материалы', 'Стильный силуэт'],
-  description: item.description
-}));
-
-export const PRODUCTS_DATA = [...FEATURED_PRODUCTS, ...PARADISE_PRODUCTS, ...PHOTO_PRODUCTS];
-
 export const PRODUCT_CATEGORIES = [
-  { id: 'all', label: 'Все модели' }, 
-  { id: 'straight', label: 'Прямые' },
-  { id: 'corner', label: 'Угловые' }, 
-  { id: 'modular', label: 'Модульные' },
-  { id: 'designer', label: 'Дизайнерские' },
-  { id: 'tables', label: 'Столы' },
-  { id: 'chairs', label: 'Стулья и кресла' }
+  { id: 'all', label: 'Все товары' }, { id: 'sofas', label: 'Диваны' },
+  { id: 'beds', label: 'Кровати' }, { id: 'mattresses', label: 'Матрасы' },
 ];
 
 export const FABRIC_COLLECTIONS = [
   { id: 'like', name: 'Like', type: 'Букле', image: '/media/textiles/like.webp' },
   { id: 'soft-chenille', name: 'Soft Chenille', type: 'Шенилл', image: '/media/textiles/soft-chenille.webp' },
   { id: 'preston', name: 'Preston', type: 'Рогожка', image: '/media/textiles/preston.webp' },
-  { id: 'california', name: 'California', type: 'Велюр', image: '/media/textiles/california.webp' }
+  { id: 'california', name: 'California', type: 'Велюр', image: '/media/textiles/california.webp' },
 ];
 
 export const formatMoney = (value) => new Intl.NumberFormat('ru-RU').format(Number(value) || 0);
