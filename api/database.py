@@ -2,7 +2,8 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-SQLALCHEMY_DATABASE_URL = os.environ.get("POSTGRES_URL", "sqlite:///./sql_app.db")
+default_sqlite = "sqlite:////tmp/bula_mebel.db" if os.environ.get("VERCEL") else "sqlite:///./sql_app.db"
+SQLALCHEMY_DATABASE_URL = os.environ.get("POSTGRES_URL", default_sqlite)
 if SQLALCHEMY_DATABASE_URL.startswith("postgres://"):
     SQLALCHEMY_DATABASE_URL = SQLALCHEMY_DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
